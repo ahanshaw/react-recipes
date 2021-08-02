@@ -7,6 +7,7 @@ import {
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { RecipeList } from "./components/RecipeList/RecipeList";
+import { Recipe } from "./components/Recipe/Recipe";
 
 import "./assets/scss/main.scss";
 
@@ -16,6 +17,9 @@ function App() {
 			<Header />
 			<Router>
 				<Switch>
+					<Route path="/recipe/:recipeTitle">
+						<Recipe />
+					</Route>
 					<Route path="/category/:recipeCategory">
 						<RecipeList />
 					</Route>
