@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useParams, Link} from 'react-router-dom';
 import database from '../../services/firebase';
 
-export function Recipe() {
+const Recipe = () => {
 	const [recipe, setRecipe] = useState([]);
 	const {recipeTitle} = useParams();
 
@@ -54,3 +54,5 @@ export function Recipe() {
 		</div>
 	);
 }
+
+export default Recipe;

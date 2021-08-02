@@ -4,7 +4,7 @@ import {useParams, Link} from 'react-router-dom';
 import database from '../../services/firebase';
 import { Loader } from "../Loader/Loader";
 
-export function RecipeList() {
+const RecipeList = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [recipes, setRecipes] = useState([]);
 	const { recipeCategory } = useParams();
@@ -51,3 +51,5 @@ export function RecipeList() {
 		</div>
 	);
 }
+
+export default RecipeList;
