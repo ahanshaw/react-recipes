@@ -1,17 +1,40 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 
 import database from '../../services/firebase';
+import { Loader } from "../Loader/Loader";
 
 export function RecipeList() {
+	const [isLoading, setLoading] = useState(true);
 	const [recipes, setRecipes] = useState([]);
+	const {recipeCategory} = useParams();
 
 	useEffect(() => {
+		setLoading(true);
 		database.ref('recipes').on('value', function(snapshot){
 			let data = snapshot.val();
-			setRecipes(data);
+			if (recipeCategory) {
+				const results = data.filter((recipe) => {
+					return recipe.category.toLowerCase().replace(/\s/g, '-') === recipeCategory;
+				});
+				setRecipes(results);
+				setLoading(false);
+
+			}
+			else {
+				setRecipes(data);
+				setLoading(false);
+			}
 		});
-	}, []);
+	}, [recipeCategory]);
+
+    if (isLoading) {
+        return (
+            <div>
+                <Loader />
+            </div>
+        );
+	}
 
 	return (
 		<>

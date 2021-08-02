@@ -15,7 +15,14 @@ function App() {
 		<div className="App">
 			<Header />
 			<Router>
-				<RecipeList />
+				<Switch>
+					<Route path="/category/:recipeCategory">
+						<RecipeList />
+					</Route>
+					<Route>
+						<RecipeList />
+					</Route>
+				</Switch>
 			</Router>
 			<Footer />
 		</div>
