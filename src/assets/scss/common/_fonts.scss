@@ -1,16 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bitter&display=swap");
 
 @mixin font-reg {
-    font-family: "EB Garamond", serif;
-    font-weight: 400;
+	font-family: "Bitter", serif;
+	font-weight: 400;
 }
 
 @mixin font-med {
-    font-family: "EB Garamond", serif;
-    font-weight: 600;
+	font-family: "Bitter", serif;
+	font-weight: 600;
 }
 
 @mixin font-bold {
-    font-family: "EB Garamond", serif;
-    font-weight: 800;
+	font-family: "Bitter", serif;
+	font-weight: 800;
 }

@@ -4,4 +4,9 @@
 @import "common/general";
 
 @import "elements/buttons";
-@import "elements/ingredients-table";
+
+@import "components/header";
+@import "components/footer";
+
+@import "components/recipe-list";
+@import "components/recipe";

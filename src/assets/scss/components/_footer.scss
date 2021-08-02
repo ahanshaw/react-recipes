@@ -1,0 +1,6 @@
+.footer {
+	p {
+		@include font-size(12);
+		margin: 40px 0 20px 0;
+	}
+}

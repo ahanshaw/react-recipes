@@ -1,0 +1,47 @@
+.recipe {
+	h2 {
+		margin: 40px 0 20px 0;
+	}
+
+	&__category {
+		a {
+			@include font-med;
+			@include font-size(18);
+			color: $black;
+			text-decoration-color: rgba($black, 0.25);
+			transition: text-decoration-color 0.3s ease;
+
+			&:hover {
+				text-decoration-color: $black;
+			}
+		}
+	}
+
+	&__ingredients {
+		td {
+			padding-right: 40px;
+
+			&:first-of-type {
+				text-align: right;
+			}
+		}
+	}
+
+	&__instructions {
+		margin: 0 0 0 20px;
+		padding: 0;
+
+		li {
+			max-width: 600px;
+			margin: 0 0 20px 0;
+
+			&::marker {
+				margin-right: 10px;
+			}
+		}
+	}
+
+	&__notes {
+		max-width: 600px;
+	}
+}

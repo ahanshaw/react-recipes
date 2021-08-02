@@ -17,30 +17,40 @@ export function Recipe() {
 	}, [recipeTitle]);
 
 	return (
-		<>
+		<div className="recipe">
 			{recipe.map(recipe => {
 				return (
 					<div key={recipe.id} className="recipe-list">
-						<h2>{recipe.title}</h2>
-						<p><Link to={`/category/${recipe.category.toLowerCase().replace(/\s/g, '-')}`}>{recipe.category}</Link></p>
+						<h1>{recipe.title}</h1>
+						<p className="recipe__category">Category: <Link to={`/category/${recipe.category.toLowerCase().replace(/\s/g, '-')}`}>{recipe.category}</Link></p>
 						<p>Servings: {recipe.servings}</p>
-						<h3>Ingredients</h3>
-						{recipe.ingredients.map((ingredient, index) => {
-							return (
-								<p key={index}>{ingredient.ingredientQuantity} {ingredient.ingredientMeasurement} {ingredient.ingredientItem}</p>
-							)
-						})}
-						<h3>Instructions</h3>
-						{recipe.instructions.map((step, index) => {
-							return (
-								<p key={index}>{index + 1}. {step.step}</p>
-							)
-						})}
-						<h3>Notes</h3>
-						<p>{recipe.notes}</p>
+						<h2>Ingredients</h2>
+						<table className="recipe__ingredients">
+							<tbody>
+								{recipe.ingredients.map((ingredient, index) => {
+									return (
+										<tr key={index}>
+											<td>{ingredient.ingredientQuantity}</td>
+											<td>{ingredient.ingredientMeasurement}</td>
+											<td>{ingredient.ingredientItem}</td>
+										</tr>
+									)
+								})}
+							</tbody>
+						</table>
+						<h2>Instructions</h2>
+						<ol className="recipe__instructions">
+							{recipe.instructions.map((step, index) => {
+								return (
+									<li key={index}> {step.step}</li>
+								)
+							})}
+						</ol>
+						<h2>Notes</h2>
+						<p className="recipe__notes">{recipe.notes}</p>
 					</div>
 				)
 			})}
-		</>
+		</div>
 	);
 }

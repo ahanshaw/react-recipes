@@ -13,21 +13,23 @@ import "./assets/scss/main.scss";
 
 function App() {
 	return (
-		<div className="App">
-			<Header />
-			<Router>
-				<Switch>
-					<Route path="/recipe/:recipeTitle">
-						<Recipe />
-					</Route>
-					<Route path="/category/:recipeCategory">
-						<RecipeList />
-					</Route>
-					<Route>
-						<RecipeList />
-					</Route>
-				</Switch>
-			</Router>
+		<div className="App wrapper">
+			<div>
+				<Header />
+				<Router>
+					<Switch>
+						<Route path="/recipe/:recipeTitle">
+							<Recipe />
+						</Route>
+						<Route path="/category/:recipeCategory">
+							<RecipeList />
+						</Route>
+						<Route>
+							<RecipeList />
+						</Route>
+					</Switch>
+				</Router>
+			</div>
 			<Footer />
 		</div>
 	);

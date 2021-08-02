@@ -1,9 +1,9 @@
 export function Header() {
     return (
 		<header className="header">
-			<h1>
-				<a href="/">Recipes</a>
-			</h1>
+			<p>
+				<a href="/">Recipe Fun with React!</a>
+			</p>
         </header>
     );
 }

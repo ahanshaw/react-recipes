@@ -1,0 +1,15 @@
+.recipe-list {
+	h1 {
+		text-transform: capitalize;
+	}
+
+	a {
+		color: $black;
+		text-decoration-color: rgba($black, 0.25);
+		transition: text-decoration-color 0.3s ease;
+
+		&:hover {
+			text-decoration-color: $black;
+		}
+	}
+}

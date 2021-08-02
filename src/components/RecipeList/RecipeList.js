@@ -7,7 +7,8 @@ import { Loader } from "../Loader/Loader";
 export function RecipeList() {
 	const [isLoading, setLoading] = useState(true);
 	const [recipes, setRecipes] = useState([]);
-	const {recipeCategory} = useParams();
+	const { recipeCategory } = useParams();
+	const [pageTitle, setPageTitle] = useState();
 
 	useEffect(() => {
 		setLoading(true);
@@ -18,11 +19,12 @@ export function RecipeList() {
 					return recipe.category.toLowerCase().replace(/\s/g, '-') === recipeCategory;
 				});
 				setRecipes(results);
+				setPageTitle(recipeCategory + ' Recipes');
 				setLoading(false);
-
 			}
 			else {
 				setRecipes(data);
+				setPageTitle('All Recipes');
 				setLoading(false);
 			}
 		});
@@ -37,7 +39,8 @@ export function RecipeList() {
 	}
 
 	return (
-		<>
+		<div className="recipe-list">
+			<h1>{pageTitle}</h1>
 			{recipes.map((recipe, index) => {
 				return (
 					<div key={index} className="recipe-list">
@@ -45,6 +48,6 @@ export function RecipeList() {
 					</div>
 				)
 			})}
-		</>
+		</div>
 	);
 }
