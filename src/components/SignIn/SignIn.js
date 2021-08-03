@@ -1,27 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import database from '../../services/firebase';
-
-
-//import {useParams, Link} from 'react-router-dom';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMsg, setErrorMsg] = useState();
+    const [errorMsg, setErrorMsg] = useState('');
 	
 	const onChange = (event) => {
 		const {name, value} = event.currentTarget;
 
-		if(name === 'userEmail') {
+		if (name === 'userEmail') {
 			setEmail(value);
 		}
-		else if(name === 'userPassword'){
+		else if (name === 'userPassword'){
 			setPassword(value);
 		}
 	};
 
 	const submitForm = (e) => {
 		e.preventDefault();
+		setErrorMsg('');
 		database.app.auth().signInWithEmailAndPassword(email, password)
 		.then((userCredential) => {
 			console.log(userCredential.user);
@@ -38,10 +36,6 @@ const SignIn = () => {
 			}
 		});
 	}
-
-	useEffect(() => {
-
-	}, []);
 
 	return (
 		<div className="sign-in">
