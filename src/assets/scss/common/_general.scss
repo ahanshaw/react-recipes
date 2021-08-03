@@ -59,4 +59,8 @@ p {
 	min-height: 100vh;
 	max-width: 900px;
 	margin: 0 auto;
+
+	@include mobile {
+		width: calc(100% - 30px);
+	}
 }
