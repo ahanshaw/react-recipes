@@ -1,5 +1,23 @@
 /* buttons/links */
 
 .btn {
-    @include button-reset;
+	@include button-reset;
+
+	&--submit {
+		height: 40px;
+		@include font-reg;
+		@include font-size(16);
+		line-height: 40px;
+		text-transform: uppercase;
+		color: $white;
+		padding: 0 40px;
+		background-color: $black;
+		border: 2px solid $black;
+		transition: color 0.3s ease, background-color 0.3s ease;
+
+		&:hover {
+			color: $black;
+			background-color: $white;
+		}
+	}
 }

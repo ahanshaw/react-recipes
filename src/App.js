@@ -8,6 +8,7 @@ import "./assets/scss/main.scss";
 
 const RecipeList = lazy(() => import('./components/RecipeList/RecipeList'));
 const Recipe = lazy(() => import('./components/Recipe/Recipe'));
+const SignIn = lazy(() => import('./components/SignIn/SignIn'));
 
 function App() {
 	return (
@@ -17,6 +18,9 @@ function App() {
 				<Router>
 					<Suspense fallback={<div>Loading...</div>}>
 						<Switch>
+							<Route path="/account/signin">
+								<SignIn />
+							</Route>
 							<Route path="/recipe/:recipeTitle">
 								<Recipe />
 							</Route>
