@@ -42,7 +42,7 @@ const RecipeAdd = () => {
 			<div className="form__title">
 				<fieldset>
 					<label htmlFor="title">Title</label>
-					<input id="title" name="title" type="text" {...register('title', { required: true })} />
+					<input id="title" name="title" type="text" placeholder="Recipe title" {...register('title', { required: true })} />
 					{errors.title && <p className="error">A recipe title is required.</p>}
 				</fieldset>
 			</div>
@@ -57,6 +57,7 @@ const RecipeAdd = () => {
 									type="number"
 									{...register(`ingredients.${index}.quantity`, {required: true})}
 									id={`quantity${index}`}
+									placeholder="1"
 									defaultValue={field.quantity}
 								/>
 							</div>
@@ -65,6 +66,7 @@ const RecipeAdd = () => {
 								<input
 									{...register(`ingredients.${index}.measurement`)}
 									id={`measurement${index}`}
+									placeholder="cup"
 									defaultValue={field.measurement}
 								/>
 							</div>
@@ -73,6 +75,7 @@ const RecipeAdd = () => {
 								<input
 									{...register(`ingredients.${index}.item`, { required: true })}
 									id={`item${index}`}
+									placeholder="flour"
 									defaultValue={field.item}
 								/>
 							</div>
@@ -101,6 +104,7 @@ const RecipeAdd = () => {
 								<textarea
 									{...register(`instructions.${index}.step`, { required: true })}
 									id={`instructions${index}`}
+									placeholder="Add at least one step."
 									defaultValue={field.step}
 								></textarea>
 							</div>
@@ -123,7 +127,7 @@ const RecipeAdd = () => {
 				<fieldset>
 					<div className="form__notes">
 						<label htmlFor="notes">Notes</label>
-						<textarea id="notes" name="notes" {...register('notes')}></textarea>
+						<textarea id="notes" name="notes" placeholder="Optional notes." {...register('notes')}></textarea>
 					</div>
 				</fieldset>
 				<button className="btn btn--submit" type="submit">Add Recipe</button>
@@ -132,7 +136,7 @@ const RecipeAdd = () => {
 				<fieldset>
 					<div className="form__cats__servings">
 						<label htmlFor="servings">Number of Servings</label>
-						<input id="servings" name="servings" type="number" {...register('servings', { min: 1 })} />
+						<input id="servings" name="servings" placeholder="2" type="number" {...register('servings', { min: 1 })} />
 					</div>
 					{errors.servings && <p className="error">Must have at least one serving.</p>}
 				</fieldset>
@@ -140,7 +144,7 @@ const RecipeAdd = () => {
 					<div className="form__cats__cat">
 						<label htmlFor="category">Category</label>
 						<select id="category" name="category" {...register('category', { required: true })}>
-							<option value="">Choose a Category</option>
+							<option disabled selected value="">Choose a Category</option>
 							<option value="soup">Soup</option>
 							<option value="other">Other</option>
 						</select>
@@ -156,6 +160,7 @@ const RecipeAdd = () => {
 								<input
 									{...register(`tags.${index}.tag`)}
 									id={`tags${index}`}
+									placeholder="optional tag"
 									defaultValue={field[index]}
 								/>
 							</div>

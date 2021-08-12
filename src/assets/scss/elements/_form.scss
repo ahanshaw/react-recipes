@@ -44,7 +44,9 @@
 		color: $black;
 		padding: 0 10px;
 		border: 1px solid rgba($black, 0.5);
+	}
 
+	input {
 		&::placeholder {
 			@include font-reg;
 			@include font-size(14);
