@@ -34,6 +34,7 @@ const RecipeAdd = () => {
 
 	const onSubmit = (data) => {
 		setRecipe(data);
+		console.log(recipe);
 	} 
 
 	return (
