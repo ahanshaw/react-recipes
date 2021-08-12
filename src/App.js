@@ -7,6 +7,7 @@ import { Footer } from "./components/Footer/Footer";
 import "./assets/scss/main.scss";
 
 const RecipeList = lazy(() => import('./components/RecipeList/RecipeList'));
+const RecipeAdd = lazy(() => import('./components/RecipeAdd/RecipeAdd'));
 const Recipe = lazy(() => import('./components/Recipe/Recipe'));
 const SignIn = lazy(() => import('./components/SignIn/SignIn'));
 
@@ -20,6 +21,9 @@ function App() {
 						<Switch>
 							<Route path="/account/signin">
 								<SignIn />
+							</Route>
+							<Route path="/recipe/new">
+								<RecipeAdd />
 							</Route>
 							<Route path="/recipe/:recipeTitle">
 								<Recipe />
