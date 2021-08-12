@@ -19,10 +19,10 @@ function App() {
 				<Router>
 					<Suspense fallback={<div>Loading...</div>}>
 						<Switch>
-							<Route path="/account/signin">
+							<Route exact path="/account/signin">
 								<SignIn />
 							</Route>
-							<Route path="/recipe/new">
+							<Route exact path="/recipe/new">
 								<RecipeAdd />
 							</Route>
 							<Route path="/recipe/:recipeTitle">
