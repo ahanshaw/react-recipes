@@ -31,7 +31,7 @@ const RecipeAdd = () => {
 	} = useFieldArray({ control, name: 'instructions' });
 
 	const onSubmit = (data) => {
-		let random = Math.random() * (1000000000 - 9999999999) + 1000000000;
+		let random = Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000);
 		database.ref('recipes')
 		.child(Math.round(random))
 		.set({
