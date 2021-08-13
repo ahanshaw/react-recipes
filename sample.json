@@ -1,0 +1,140 @@
+{
+	"recipes": [
+		{
+			"title": "Lentil Vegetable Soup",
+			"servings": 8,
+			"category": "Soup",
+			"tags": [{
+				"tag": "vegetarian"
+			}],
+			"ingredients": [{
+					"quantity": 1,
+					"measurement": "medium",
+					"item": "onion, chopped"
+				},
+				{
+					"quantity": "3",
+					"measurement": "cloves",
+					"item": "garlic, minced"
+				},
+				{
+					"quantity": "1",
+					"measurement": "pound",
+					"item": "baby potatoes"
+				},
+				{
+					"quantity": 2,
+					"measurement": "medium",
+					"item": "zucchini"
+				},
+				{
+					"quantity": 1,
+					"measurement": "pound",
+					"item": "carrots"
+				},
+				{
+					"quantity": 1.5,
+					"measurement": "cups",
+					"item": "green and/or French lentils"
+				},
+				{
+					"quantity": 1,
+					"measurement": "14.5-ounce can",
+					"item": "fire-roasted diced tomatoes"
+				},
+				{
+					"quantity": 1,
+					"measurement": "14.5-ounce can",
+					"item": "crushed tomatoes"
+				},
+				{
+					"quantity": 3,
+					"measurement": "dashes",
+					"item": "cayenne pepper"
+				},
+				{
+					"quantity": 4,
+					"measurement": "cups",
+					"item": "water"
+				}
+			],
+			"instructions": [{
+					"step": "Saute onion and garlic."
+				},
+				{
+					"step": "While the onions and garlic are sauteing, dice vegetables."
+				},
+				{
+					"step": "When onions are soft and translucent, add vegetables, lentils, tomatoes, cayenne, and water."
+				},
+				{
+					"step": "Cook until vegetables are soft."
+				}
+			],
+			"notes": "This makes a very thick soup. Increase the amount of water if you like thinner soups. For added nutrition, you can also saute chopped mushrooms with the garlic and onions."
+		},
+		{
+		"title": "Curried Chickpea Soup",
+		"servings": 6,
+		"category": "Soup",
+		"tags": [{
+			"tag": "vegan"
+		}],
+		"ingredients": [{
+				"quantity": 1,
+				"measurement": "medium",
+				"item": "onion, chopped"
+			},
+			{
+				"quantity": "3",
+				"measurement": "cloves",
+				"item": "garlic, minced"
+			},
+			{
+				"quantity": 2,
+				"measurement": "medium",
+				"item": "zucchini"
+			},
+			{
+				"quantity": 1,
+				"measurement": "pound",
+				"item": "carrots"
+			},
+			{
+				"quantity": 2,
+				"measurement": "cans",
+				"item": "chickpeas"
+			},
+			{
+				"quantity": 1,
+				"measurement": "28-ounce can",
+				"item": "crushed tomatoes"
+			},
+			{
+				"quantity": 2,
+				"measurement": "tablespoons",
+				"item": "curry powder"
+			},
+			{
+				"quantity": 3,
+				"measurement": "cups",
+				"item": "water"
+			}
+		],
+		"instructions": [{
+				"step": "Saute onion and garlic."
+			},
+			{
+				"step": "While the onions and garlic are sauteing, dice vegetables."
+			},
+			{
+				"step": "When onions are soft and translucent, add vegetables, beans, tomatoes, curry powder, and water."
+			},
+			{
+				"step": "Cook until vegetables are soft."
+			}
+		],
+		"notes": "This makes a thicker soup. Increase the amount of water if you like soups thinner. I also like to blend until mostly smooth with immersion blender and serve with fancy bread."
+		}
+	]
+}

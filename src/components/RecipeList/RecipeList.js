@@ -7,26 +7,28 @@ import { Loader } from "../Loader/Loader";
 const RecipeList = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [recipes, setRecipes] = useState([]);
-	const { recipeCategory } = useParams();
+	const {recipeCategory} = useParams();
 	const [pageTitle, setPageTitle] = useState();
 
 	useEffect(() => {
 		setLoading(true);
-		database.ref('recipes').on('value', function(snapshot){
-			let data = snapshot.val();
+		database.ref('recipes').once('value', function (snapshot) {
+			let recipeArr = [];
 			if (recipeCategory) {
-				const results = data.filter((recipe) => {
-					return recipe.category.toLowerCase().replace(/\s/g, '-') === recipeCategory;
-				});
-				setRecipes(results);
 				setPageTitle(recipeCategory + ' Recipes');
-				setLoading(false);
+				snapshot.forEach(recipe => {
+					if (recipe.val().category.toLowerCase().replace(/\s/g, '-') === recipeCategory) {
+						recipeArr.push(recipe.val());
+					}
+				});
 			}
 			else {
-				setRecipes(data);
-				setPageTitle('All Recipes');
-				setLoading(false);
+			    snapshot.forEach(recipe => {
+					recipeArr.push(recipe.val());
+				});
 			}
+			setRecipes(recipeArr);
+			setLoading(false);
 		});
 	}, [recipeCategory]);
 
@@ -47,7 +49,7 @@ const RecipeList = () => {
 						<h2><Link to={`/recipe/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link></h2>
 					</div>
 				)
-			})}
+			})}				
 		</div>
 	);
 }

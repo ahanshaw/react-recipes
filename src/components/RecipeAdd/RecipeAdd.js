@@ -1,16 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm, useFieldArray } from "react-hook-form";
-//import {Link} from 'react-router-dom';
 
-//import database from '../../services/firebase';
+import database from '../../services/firebase';
 
 const RecipeAdd = () => {
-	const [recipe, setRecipe] = useState();
 	const { control, register, formState: { errors }, handleSubmit } = useForm({
 		defaultValues: {
 			tags: [{tag: ''}],
 			ingredients: [{ quantity: '', measurement: '', item: '' }],
-			instructions: [{step: ''}]
+			instructions: [{ step: '' }],
 		}
 	});
 
@@ -33,8 +31,19 @@ const RecipeAdd = () => {
 	} = useFieldArray({ control, name: 'instructions' });
 
 	const onSubmit = (data) => {
-		setRecipe(data);
-		console.log(recipe);
+		let random = Math.random() * (10000 - 100) + 100;
+		database.ref('recipes')
+		.child(Math.round(random))
+		.set({
+			key: Math.round(random),
+			title: data.title,
+			tags: data.tags,
+			servings: data.servings,
+			notes: data.notes,
+			instructions: data.instructions,
+			ingredients: data.ingredients,
+			category: data.category
+		})
 	} 
 
 	return (
@@ -144,7 +153,7 @@ const RecipeAdd = () => {
 					<div className="form__cats__cat">
 						<label htmlFor="category">Category</label>
 						<select id="category" name="category" {...register('category', { required: true })}>
-							<option disabled selected value="">Choose a Category</option>
+							<option value="">Choose a Category</option>
 							<option value="soup">Soup</option>
 							<option value="other">Other</option>
 						</select>

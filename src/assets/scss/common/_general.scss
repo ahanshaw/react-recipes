@@ -26,12 +26,12 @@ body {
 }
 
 h1 {
-	@include font-bold;
+	@include font-med;
 	@include font-size(36);
 }
 
 h2 {
-	@include font-bold;
+	@include font-med;
 	@include font-size(24);
 }
 
