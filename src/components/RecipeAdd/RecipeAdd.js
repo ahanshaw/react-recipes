@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import {Link} from 'react-router-dom';
 import { useForm, useFieldArray } from "react-hook-form";
 
 import database from '../../services/firebase';
 
 const RecipeAdd = () => {
+	const [recipeAdded, setRecipeAdded] = useState(false);
+	const [recipeTitle, setRecipeTitle] = useState('');
 	const { control, register, formState: { errors }, handleSubmit } = useForm({
 		defaultValues: {
 			tags: [{tag: ''}],
@@ -33,25 +36,44 @@ const RecipeAdd = () => {
 	const onSubmit = (data) => {
 		let random = Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000);
 		database.ref('recipes')
-		.child(Math.round(random))
-		.set({
-			key: Math.round(random),
-			title: data.title,
-			tags: data.tags,
-			servings: data.servings,
-			notes: data.notes,
-			instructions: data.instructions,
-			ingredients: data.ingredients,
-			category: data.category
-		})
-	} 
+			.child(Math.round(random))
+			.set({
+				key: Math.round(random),
+				title: data.title,
+				tags: data.tags,
+				servings: data.servings,
+				notes: data.notes,
+				instructions: data.instructions,
+				ingredients: data.ingredients,
+				category: data.category
+			})
+			.then(
+				setRecipeAdded(true),
+		)
+		.catch()
+	}
+
+	const handleTitle = (e) => {
+		const title = e.target.value;
+		setRecipeTitle(title);
+	}
+	
+	if (recipeAdded) {
+        return (
+            <div>
+				<p>Recipe added!</p>
+				<p><Link className="btn" to={`/add`}>Add another recipe</Link></p>
+				<p><Link to={`/recipe/${recipeTitle.toLowerCase().replace(/\s/g, '-')}`}>View {recipeTitle}</Link></p>
+            </div>
+        );
+	}
 
 	return (
 		<form className="form" onSubmit={handleSubmit(onSubmit)}>
 			<div className="form__title">
 				<fieldset>
 					<label htmlFor="title">Title</label>
-					<input id="title" name="title" type="text" placeholder="Recipe title" {...register('title', { required: true })} />
+					<input id="title" name="title" type="text" placeholder="Recipe title" {...register('title', { required: true })} onKeyUp = {(event) => handleTitle(event)} />
 					{errors.title && <p className="error">A recipe title is required.</p>}
 				</fieldset>
 			</div>
@@ -160,6 +182,7 @@ const RecipeAdd = () => {
 							<option value="breakfast">Breakfast</option>
 							<option value="desserts">Desserts</option>
 							<option value="main">Main</option>
+							<option value="sauce">Sauce</option>
 							<option value="side">Side</option>
 							<option value="soup">Soup</option>
 							<option value="other">Other</option>

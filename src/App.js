@@ -5,7 +5,6 @@ import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/Footer";
 import { Loader } from "./components/Loader/Loader";
 
-
 import "./assets/scss/main.scss";
 
 const RecipeList = lazy(() => import('./components/RecipeList/RecipeList'));
