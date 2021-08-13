@@ -16,6 +16,7 @@ const Recipe = () => {
 			snapshot.forEach(recipe => {
 				if (recipe.val().title.toLowerCase().replace(/\s/g, '-') === recipeTitle) {
 					recipeArr.push(recipe.val());
+					console.log('key ', recipe.key);
 				}
 			});
 			setRecipe(recipeArr);
@@ -38,6 +39,11 @@ const Recipe = () => {
 					<div key={index} className="recipe-list">
 						<h1>{recipe.title}</h1>
 						<p className="recipe__category">Category: <Link to={`/category/${recipe.category.toLowerCase().replace(/\s/g, '-')}`}>{recipe.category}</Link></p>
+						<p className="recipe__tags">Tags: {recipe.tags.map((tag, index) => {
+							return (
+								<Link key={index} to={`/tag/${tag.tag.toLowerCase().replace(/\s/g, '-')}`}>{tag.tag}</Link>
+							)
+						})}</p>
 						<p>Servings: {recipe.servings}</p>
 						<h2>Ingredients</h2>
 						<table className="recipe__ingredients">

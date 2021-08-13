@@ -17,6 +17,31 @@
 		}
 	}
 
+	&__tags {
+		a {
+			@include font-reg;
+			@include font-size(18);
+			color: $black;
+			text-decoration-color: rgba($black, 0.25);
+			transition: text-decoration-color 0.3s ease;
+
+			&::after {
+				content: ",";
+				margin-right: 5px;
+			}
+
+			&:last-of-type {
+				&::after {
+					display: none;
+				}
+			}
+
+			&:hover {
+				text-decoration-color: $black;
+			}
+		}
+	}
+
 	&__ingredients {
 		tr {
 		}

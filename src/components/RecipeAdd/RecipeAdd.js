@@ -31,7 +31,7 @@ const RecipeAdd = () => {
 	} = useFieldArray({ control, name: 'instructions' });
 
 	const onSubmit = (data) => {
-		let random = Math.random() * (10000 - 100) + 100;
+		let random = Math.random() * (1000000000 - 9999999999) + 1000000000;
 		database.ref('recipes')
 		.child(Math.round(random))
 		.set({
@@ -154,6 +154,12 @@ const RecipeAdd = () => {
 						<label htmlFor="category">Category</label>
 						<select id="category" name="category" {...register('category', { required: true })}>
 							<option value="">Choose a Category</option>
+							<option value="beverages">Beverages</option>
+							<option value="breads">Breads</option>
+							<option value="breakfast">Breakfast</option>
+							<option value="desserts">Desserts</option>
+							<option value="main">Main</option>
+							<option value="side">Side</option>
 							<option value="soup">Soup</option>
 							<option value="other">Other</option>
 						</select>

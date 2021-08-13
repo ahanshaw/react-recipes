@@ -31,6 +31,9 @@ function App() {
 							<Route path="/category/:recipeCategory">
 								<RecipeList />
 							</Route>
+							<Route path="/tag/:recipeTg">
+								<RecipeList />
+							</Route>							
 							<Route>
 								<RecipeList />
 							</Route>

@@ -8,6 +8,7 @@ const RecipeList = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [recipes, setRecipes] = useState([]);
 	const {recipeCategory} = useParams();
+	const {recipeTag} = useParams();
 	const [pageTitle, setPageTitle] = useState();
 
 	useEffect(() => {
@@ -22,15 +23,23 @@ const RecipeList = () => {
 					}
 				});
 			}
+			else if (recipeTag) {
+				setPageTitle(recipeTag + ' Recipes');
+				snapshot.forEach(recipe => {
+					if (recipe.val().tag.toLowerCase().replace(/\s/g, '-') === recipeTag) {
+						recipeArr.push(recipe.val());
+					}
+				});
+			}
 			else {
-			    snapshot.forEach(recipe => {
+				snapshot.forEach(recipe => {
 					recipeArr.push(recipe.val());
 				});
 			}
 			setRecipes(recipeArr);
 			setLoading(false);
 		});
-	}, [recipeCategory]);
+	}, [recipeCategory, recipeTag]);
 
     if (isLoading) {
         return (
