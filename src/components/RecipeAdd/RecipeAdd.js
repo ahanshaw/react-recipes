@@ -67,6 +67,7 @@ const RecipeAdd = () => {
 									{...register(`ingredients.${index}.quantity`, {required: true})}
 									id={`quantity${index}`}
 									placeholder="1"
+									step="0.01"
 									defaultValue={field.quantity}
 								/>
 							</div>

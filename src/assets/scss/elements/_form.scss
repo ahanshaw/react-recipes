@@ -67,9 +67,9 @@
 		height: 80px;
 		@include font-reg;
 		@include font-size(16);
-		line-height: 40px;
+		@include line-height(16, 24);
 		color: $black;
-		padding: 0 10px;
+		padding: 10px;
 		border: 1px solid rgba($black, 0.5);
 
 		&::placeholder {
