@@ -2,17 +2,14 @@ import React, { useState, useEffect } from "react";
 import {useParams, Link} from 'react-router-dom';
 
 import database from '../../services/firebase';
-import { Loader } from "../Loader/Loader";
 
 const RecipeList = () => {
-	const [isLoading, setLoading] = useState(true);
 	const [recipes, setRecipes] = useState([]);
 	const {recipeCategory} = useParams();
 	const {recipeTag} = useParams();
 	const [pageTitle, setPageTitle] = useState();
 
 	useEffect(() => {
-		setLoading(true);
 		database.ref('recipes').once('value', function (snapshot) {
 			let recipeArr = [];
 			if (recipeCategory) {
@@ -37,17 +34,8 @@ const RecipeList = () => {
 				});
 			}
 			setRecipes(recipeArr);
-			setLoading(false);
 		});
 	}, [recipeCategory, recipeTag]);
-
-    if (isLoading) {
-        return (
-            <div>
-                <Loader />
-            </div>
-        );
-	}
 
 	return (
 		<div className="recipe-list">
