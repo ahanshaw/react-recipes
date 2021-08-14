@@ -11,7 +11,7 @@ const RecipeList = lazy(() => import('./components/RecipeList/RecipeList'));
 const RecipeAdd = lazy(() => import('./components/RecipeAdd/RecipeAdd'));
 const Recipe = lazy(() => import('./components/Recipe/Recipe'));
 const UserRegister = lazy(() => import('./components/UserRegister/UserRegister'));
-const SignIn = lazy(() => import('./components/SignIn/SignIn'));
+const UserLogin = lazy(() => import('./components/UserLogin/UserLogin'));
 
 function App() {
 	return (
@@ -21,8 +21,8 @@ function App() {
 				<Router>
 					<Suspense fallback={<Loader/>}>
 						<Switch>
-							<Route path="/account/signin">
-								<SignIn />
+							<Route path="/account/login">
+								<UserLogin />
 							</Route>
 							<Route path="/account/register">
 								<UserRegister />
