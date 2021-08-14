@@ -23,9 +23,11 @@ const RecipeList = () => {
 			else if (recipeTag) {
 				setPageTitle(recipeTag + ' Recipes');
 				snapshot.forEach(recipe => {
-					if (recipe.val().tag.toLowerCase().replace(/\s/g, '-') === recipeTag) {
-						recipeArr.push(recipe.val());
-					}
+					recipe.val().tags.forEach(tag => {
+						if (tag.tag.toLowerCase().replace(/\s/g, '-') === recipeTag) {
+							recipeArr.push(recipe.val());
+						}
+					});
 				});
 			}
 			else {

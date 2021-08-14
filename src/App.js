@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Header } from "./components/Header/Header";
@@ -13,7 +13,9 @@ const Recipe = lazy(() => import('./components/Recipe/Recipe'));
 const UserRegister = lazy(() => import('./components/UserRegister/UserRegister'));
 const UserLogin = lazy(() => import('./components/UserLogin/UserLogin'));
 
-function App() {
+const App = () => {
+	const [userId, setUserId] = useState();
+
 	return (
 		<div className="App wrapper">
 			<div>
@@ -22,13 +24,13 @@ function App() {
 					<Suspense fallback={<Loader/>}>
 						<Switch>
 							<Route path="/account/login">
-								<UserLogin />
+								<UserLogin setUserId={setUserId} />
 							</Route>
 							<Route path="/account/register">
 								<UserRegister />
 							</Route>
 							<Route path="/add">
-								<RecipeAdd />
+								<RecipeAdd userId={userId} />
 							</Route>
 							<Route path="/recipe/:recipeTitle">
 								<Recipe />
@@ -36,7 +38,7 @@ function App() {
 							<Route path="/category/:recipeCategory">
 								<RecipeList />
 							</Route>
-							<Route path="/tag/:recipeTg">
+							<Route path="/tag/:recipeTag">
 								<RecipeList />
 							</Route>							
 							<Route>
