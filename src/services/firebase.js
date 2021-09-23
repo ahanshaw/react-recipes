@@ -12,7 +12,16 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_APP_ID
 };
     
-firebase.initializeApp(firebaseConfig);
+const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-  
-export default database;
+const auth = app.auth()
+
+const logout = () => {
+	auth.signOut();
+};
+
+export {
+	database,
+	auth,
+	logout
+};

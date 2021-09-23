@@ -1,66 +1,93 @@
-import React, { useState } from "react";
-import {Link} from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import {Link } from 'react-router-dom';
+import { auth, logout } from '../../services/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-import database from '../../services/firebase';
+export default function UserLogin() {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [user] = useAuthState(auth);
 
-const UserRegister = () => {
-	const [userAdded, setUserAdded] = useState(false);
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const [error, setError] = useState(null);
+	const [userExists, setUserExists] = useState(false);
+	const [resetSent, setResetSent] = useState(false);
 
-	const onSubmit = (data) => {
-		let random = Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000);
-		database.ref('users')
-			.child(Math.round(random))
-			.set({
-				key: Math.round(random),
-				firstName: data.firstName,
-				lastName: data.lastName,
-				email: data.email,
-				password: data.password
-			})
-			.then(
-				setUserAdded(true),
-		)
-		.catch()
-	}
+	const createUserWithEmailAndPassword = async (e, email, password) => {
+		e.preventDefault();
+		setResetSent(false);
+		try {
+			await auth.createUserWithEmailAndPassword(email, password);
+		}
+		catch (err) {
+			console.log(err);
+			if (err.code === 'auth/email-already-in-use') {
+				setUserExists(true);
+			}
+			if (err.code === 'auth/invalid-email') {;
+				setError('Please enter a valid email address.');
+			}
+			if (err.code === 'auth/weak-password') {
+				setError('Your password must contain at least six characters.');
+			}
+		}
+	};
 
-	if (userAdded) {
-        return (
-            <div>
-				<p>Your account was created!</p>
-				<p><Link to={`/`}>View Recipes</Link></p>
-            </div>
+	const sendPasswordResetEmail = async (e, email) => {
+		e.preventDefault();
+		try {
+			await auth.sendPasswordResetEmail(email);
+			setResetSent(true);
+		}
+		catch (err) {
+			console.log(err);
+		}
+	};
+
+	if (user) {
+		return (
+			<div>
+				<button className="dashboard__btn" onClick={logout}>
+					Logout
+				</button>
+				<Link to={`/add`}>Add a Recipe</Link>
+			</div>
         );
-	}
+    }
 
 	return (
 		<div className="account">
-			<form className="account__form" onSubmit={handleSubmit(onSubmit)}>
-				<fieldset>
-					<label htmlFor="firstName">First Name</label>
-					<input id="firstName" name="firstName" type="text" placeholder="First Name" {...register('firstName', { required: true })} />
-					{errors.firstName && <p className="error">Your first name is required.</p>}
-				</fieldset>
-				<fieldset>
-					<label htmlFor="lastName">Last Name</label>
-					<input id="lastName" name="lastName" type="text" placeholder="Last Name" {...register('lastName', { required: true })} />
-					{errors.lastName && <p className="error">Your last name is required.</p>}
-				</fieldset>
-				<fieldset>
-					<label htmlFor="email">Email address</label>
-					<input id="email" name="email" type="email" placeholder="user@email.com" {...register('email', { required: true })} />
-					{errors.email && <p className="error">Your email address is required.</p>}
-				</fieldset>
-				<fieldset>
-					<label htmlFor="password">Password (must be at least 7 characters)</label>
-					<input id="password" name="password" type="password" placeholder="********" minlength="7" {...register('password', { required: true })} />
-					{errors.password && <p className="error">A password is required.</p>}
-				</fieldset>				
-				<button className="btn btn--submit" type="submit">Create Account</button>
+			<form onSubmit={(e) => createUserWithEmailAndPassword(e, email, password)}>
+				<label htmlFor="email">Email Address</label>
+				<input
+					type="text"
+					id="email"
+					className="login__textBox"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					placeholder="E-mail Address"
+				/>
+				<label htmlFor="password">Password (must have at least 6 characters)</label>
+				<input
+					type="password"
+					id="password"
+					className="login__textBox"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					placeholder="Password"
+				/>
+				<button className="login__btn">Create Account</button>
+				{userExists && !resetSent &&
+					<div>
+						<p>An account with that email address already exists. <Link to={`/account/login`}>Log in</Link> or <button onClick={(e) => sendPasswordResetEmail(e, email)}>reset your password</button>.</p>
+					</div>
+				}
+				{resetSent && 
+					<p>Password reset sent! Check your email.</p>
+				}
+				{error && 
+					<p className="error">{error}</p>
+				}
 			</form>
 		</div>
 	);
 }
-
-export default UserRegister;

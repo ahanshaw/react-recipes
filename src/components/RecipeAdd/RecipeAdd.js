@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import {Link} from 'react-router-dom';
 import { useForm, useFieldArray } from "react-hook-form";
 
-import database from '../../services/firebase';
+import { database } from '../../services/firebase';
+import { auth } from '../../services/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const RecipeAdd = () => {
+	const [user] = useAuthState(auth);
 	const [recipeAdded, setRecipeAdded] = useState(false);
 	const [recipeTitle, setRecipeTitle] = useState('');
 	const { control, register, formState: { errors }, handleSubmit } = useForm({
@@ -57,8 +60,8 @@ const RecipeAdd = () => {
 		const title = e.target.value;
 		setRecipeTitle(title);
 	}
-	
-	if (recipeAdded) {
+
+	/*	if (recipeAdded) {
         return (
             <div>
 				<p>Recipe added!</p>
@@ -67,6 +70,13 @@ const RecipeAdd = () => {
             </div>
         );
 	}
+	*/
+
+	if (!user){
+        return (
+           <Link to={`/account/login`}>Log In</Link>
+        );
+    }
 
 	return (
 		<div className="recipe-add">

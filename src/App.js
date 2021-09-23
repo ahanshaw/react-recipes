@@ -12,9 +12,9 @@ const RecipeAdd = lazy(() => import('./components/RecipeAdd/RecipeAdd'));
 const Recipe = lazy(() => import('./components/Recipe/Recipe'));
 const UserRegister = lazy(() => import('./components/UserRegister/UserRegister'));
 const UserLogin = lazy(() => import('./components/UserLogin/UserLogin'));
+const UserPasswordReset = lazy(() => import('./components/UserPasswordReset/UserPasswordReset'));
 
 const App = () => {
-	const [userId, setUserId] = useState();
 
 	return (
 		<div className="App wrapper">
@@ -24,13 +24,16 @@ const App = () => {
 					<Suspense fallback={<Loader/>}>
 						<Switch>
 							<Route path="/account/login">
-								<UserLogin setUserId={setUserId} />
+								<UserLogin />
 							</Route>
 							<Route path="/account/register">
 								<UserRegister />
 							</Route>
+							<Route path="/account/reset">
+								<UserPasswordReset />
+							</Route>
 							<Route path="/add">
-								<RecipeAdd userId={userId} />
+								<RecipeAdd />
 							</Route>
 							<Route path="/recipe/:recipeTitle">
 								<Recipe />

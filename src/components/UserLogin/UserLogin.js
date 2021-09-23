@@ -1,73 +1,67 @@
-import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom';
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import {Link } from 'react-router-dom';
+import { auth, logout } from '../../services/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-import database from '../../services/firebase';
+export default function UserLogin() {
+	const [user] = useAuthState(auth);
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState(null);
 
-const UserLogin = () => {
-	const [userLoggedIn, setUserLoggedIn] = useState(false);
-	const [userId, setUserId] = useState();
-	const [email, setEmail] = useState();
-	const [password, setPassword] = useState();
-	const [correctEmail, setCorrectEmail] = useState(true);
-	const [correctPassword, setCorrectPassword] = useState(true);
-	const { register, handleSubmit, formState: { errors } } = useForm();
+	const signInWithEmailAndPassword = async (e, email, password) => {
+		e.preventDefault();
+		try {
+			await auth.signInWithEmailAndPassword(email, password);
+		} catch (err) {
+			console.error(err);
+			if (err.code === 'auth/user-not-found') {;
+				setError('An account with this email address does not exist.');
+			}
+			if (err.code === 'auth/invalid-email') {;
+				setError('Please enter a valid email address.');
+			}
+			if (err.code === 'auth/wrong-password') {;
+				setError('The password you entered is incorrect.');
+			}
+		}
+	};	
 
-	const onSubmit = (data) => {
-		setEmail(data.email);
-		setPassword(data.password);
-	}
-
-	useEffect(() => {
-		database.ref('users').on('value', function (snapshot) {
-			snapshot.forEach(user => {
-				if (user.val().email === email) {
-					setCorrectEmail(true);
-					if (user.val().password === password) {
-						setUserId(user.val().key);
-						setCorrectPassword(true);
-						setUserLoggedIn(true);
-						return;
-					}
-					else {
-						setCorrectPassword(false);
-					}
-				}
-				else {
-					setCorrectEmail(false);
-				}
-			});
-		});
-	}, [email, password]);
-
-	if (userLoggedIn) {
-        return (
-            <div>
-				<p>You are logged in!</p>
-				<p><Link to={`/`}>View Recipes</Link></p>
-            </div>
+	if (user) {
+		return (
+			<div>
+				<button className="dashboard__btn" onClick={logout}>
+					Logout
+				</button>
+				<Link to={`/add`}>Add a Recipe</Link>
+			</div>
         );
-	}
+    }
 
 	return (
 		<div className="account">
-			<form className="account__form" onSubmit={handleSubmit(onSubmit)}>
-				<fieldset>
-					<label htmlFor="email">Email address</label>
-					<input id="email" name="email" type="email" placeholder="user@email.com" {...register('email', { required: true })} />
-					{errors.email && <p className="error">Your email address is required.</p>}
-				</fieldset>
-				<fieldset>
-					<label htmlFor="password">Password (must be at least 7 characters)</label>
-					<input id="password" name="password" type="password" placeholder="********" minLength="7" {...register('password', { required: true })} />
-					{errors.password && <p className="error">A password is required.</p>}
-				</fieldset>				
-				<button className="btn btn--submit" type="submit">Login</button>
-				{!correctEmail && <p className="error">No user was found with that email address.</p>}
-				{!correctPassword && <p className="error">The password entered is incorrect.</p>}
+			<form onSubmit={(e) => signInWithEmailAndPassword(e, email, password)}>
+				<input
+					type="text"
+					className="login__textBox"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					placeholder="E-mail Address"
+				/>
+				<input
+					type="password"
+					className="login__textBox"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					placeholder="Password"
+				/>
+				<button className="login__btn">Log In</button>
+				{error && 
+					<p className="error">{error}</p>
+				}
+				<p><Link to={`/account/reset`}>Forgot your password?</Link></p>
+				<p><Link to={`/account/register`}>Need to create an account?</Link></p>
 			</form>
 		</div>
 	);
 }
-
-export default UserLogin;
