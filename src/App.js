@@ -13,6 +13,7 @@ const Recipe = lazy(() => import('./components/Recipe/Recipe'));
 const UserRegister = lazy(() => import('./components/UserRegister/UserRegister'));
 const UserLogin = lazy(() => import('./components/UserLogin/UserLogin'));
 const UserPasswordReset = lazy(() => import('./components/UserPasswordReset/UserPasswordReset'));
+const UserDashboard = lazy(() => import('./components/UserDashboard/UserDashboard'));
 
 const App = () => {
 
@@ -31,6 +32,9 @@ const App = () => {
 							</Route>
 							<Route path="/account/reset">
 								<UserPasswordReset />
+							</Route>
+							<Route path="/account/dashboard">
+								<UserDashboard />
 							</Route>
 							<Route path="/add">
 								<RecipeAdd />

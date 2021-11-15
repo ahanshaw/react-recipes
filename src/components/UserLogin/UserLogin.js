@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { auth, logout } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -28,14 +28,7 @@ export default function UserLogin() {
 	};	
 
 	if (user) {
-		return (
-			<div>
-				<button className="dashboard__btn" onClick={logout}>
-					Logout
-				</button>
-				<Link to={`/add`}>Add a Recipe</Link>
-			</div>
-        );
+		return <Redirect to='/account/dashboard' />
     }
 
 	return (
