@@ -25,6 +25,7 @@ const Recipe = () => {
 				return (
 					<div key={index} className="recipe-list">
 						<h1>{recipe.title}</h1>
+						<Link to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link>
 						<p className="recipe__category">Category: <Link to={`/category/${recipe.category.toLowerCase().replace(/\s/g, '-')}`}>{recipe.category}</Link></p>
 						<p className="recipe__tags">Tags: {recipe.tags.map((tag, index) => {
 							return (

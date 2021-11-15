@@ -61,7 +61,7 @@ const RecipeAdd = () => {
 		setRecipeTitle(title);
 	}
 
-	/*	if (recipeAdded) {
+	if (recipeAdded) {
         return (
             <div>
 				<p>Recipe added!</p>
@@ -70,7 +70,6 @@ const RecipeAdd = () => {
             </div>
         );
 	}
-	*/
 
 	if (!user){
         return (

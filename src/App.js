@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Header } from "./components/Header/Header";
@@ -9,6 +9,7 @@ import "./assets/scss/main.scss";
 
 const RecipeList = lazy(() => import('./components/RecipeList/RecipeList'));
 const RecipeAdd = lazy(() => import('./components/RecipeAdd/RecipeAdd'));
+const RecipeEdit = lazy(() => import('./components/RecipeEdit/RecipeEdit'));
 const Recipe = lazy(() => import('./components/Recipe/Recipe'));
 const UserRegister = lazy(() => import('./components/UserRegister/UserRegister'));
 const UserLogin = lazy(() => import('./components/UserLogin/UserLogin'));
@@ -38,6 +39,9 @@ const App = () => {
 							</Route>
 							<Route path="/add">
 								<RecipeAdd />
+							</Route>
+							<Route path="/edit/:recipeKey/:recipeTitle">
+								<RecipeEdit />
 							</Route>
 							<Route path="/recipe/:recipeTitle">
 								<Recipe />
