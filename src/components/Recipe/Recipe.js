@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from 'react-router-dom';
 import { database } from '../../services/firebase';
+import { auth } from '../../services/firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Recipe = () => {
+	const [user] = useAuthState(auth);
 	const [recipe, setRecipe] = useState([]);
 	const {recipeTitle} = useParams();
 
@@ -25,7 +28,9 @@ const Recipe = () => {
 				return (
 					<div key={index} className="recipe-list">
 						<h1>{recipe.title}</h1>
-						<Link to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link>
+						{user &&
+							<Link to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link>
+						}
 						<p className="recipe__category">Category: <Link to={`/category/${recipe.category.toLowerCase().replace(/\s/g, '-')}`}>{recipe.category}</Link></p>
 						<p className="recipe__tags">Tags: {recipe.tags.map((tag, index) => {
 							return (
