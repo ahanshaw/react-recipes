@@ -6,7 +6,6 @@ import { database } from '../../services/firebase';
 import { auth } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-
 const RecipeEdit = () => {
 	const {recipeKey} = useParams();
 	const [recipe, setRecipe] = useState([]);
@@ -81,9 +80,18 @@ const RecipeEdit = () => {
         return (
            <Link to={`/account/login`}>Log In</Link>
         );
-    }
+	}
+	
+	if (user.uid !== recipe.user && !recipeUpdated) {
+		return (
+			<div>
+				<p>Sorry, you can&#8217;t edit {recipe.title}.</p>
+				<p><Link to={`/`}>Return home</Link>.</p>
+			</div>
+        );
+	}
 
-	if (user && !recipeUpdated) {
+	if (user.uid === recipe.user && !recipeUpdated) {
 		return (
 			<div className="recipe-add">
 				<form className="recipe-add__form" onSubmit={handleSubmit(onSubmit)}>

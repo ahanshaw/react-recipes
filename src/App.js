@@ -43,7 +43,7 @@ const App = () => {
 							<Route path="/edit/:recipeKey/:recipeTitle">
 								<RecipeEdit />
 							</Route>
-							<Route path="/recipe/:recipeTitle">
+							<Route path="/recipe/:recipeKey/:recipeTitle">
 								<Recipe />
 							</Route>
 							<Route path="/category/:recipeCategory">

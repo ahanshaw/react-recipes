@@ -47,7 +47,7 @@ const RecipeList = () => {
 				.map((recipe, index) => {
 				return (
 					<div key={index} className="recipe-list">
-						<h2><Link to={`/recipe/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link></h2>
+						<h2><Link to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link></h2>
 					</div>
 				)
 			})}				

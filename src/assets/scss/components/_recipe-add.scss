@@ -5,7 +5,8 @@
 		gap: 0;
 		grid-template-areas:
 			"title cats"
-			"main cats";
+			"main cats"
+			"submit submit";
 		width: 100%;
 		height: 100%;
 
@@ -14,7 +15,8 @@
 			grid-template-areas:
 				"title"
 				"cats"
-				"main";
+				"main"
+				"submit";
 		}
 
 		&__title {
@@ -45,6 +47,10 @@
 					width: calc(100% - 40px);
 				}
 			}
+		}
+
+		&__submit {
+			grid-area: main;
 		}
 
 		&__ingredients {

@@ -13,7 +13,7 @@ export function Header() {
 				<div className="admin">
 					<p><a href="/add">Add a Recipe</a></p>
 					<p><button onClick={logout}>
-						Logout
+						Log Out
 					</button></p>
 				</div>
 			}

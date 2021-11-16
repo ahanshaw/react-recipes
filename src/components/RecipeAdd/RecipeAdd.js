@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm, useFieldArray } from "react-hook-form";
 
 import { database } from '../../services/firebase';
@@ -10,6 +10,7 @@ const RecipeAdd = () => {
 	const [user] = useAuthState(auth);
 	const [recipeAdded, setRecipeAdded] = useState(false);
 	const [recipeTitle, setRecipeTitle] = useState('');
+	
 	const { control, register, formState: { errors }, handleSubmit } = useForm({
 		defaultValues: {
 			tags: [{tag: ''}],
@@ -42,6 +43,7 @@ const RecipeAdd = () => {
 			.child(Math.round(random))
 			.set({
 				key: Math.round(random),
+				user: user.uid,
 				title: data.title,
 				tags: data.tags,
 				servings: data.servings,
@@ -172,7 +174,6 @@ const RecipeAdd = () => {
 							<textarea id="notes" name="notes" placeholder="Optional notes." {...register('notes')}></textarea>
 						</div>
 					</fieldset>
-					<button className="btn btn--submit" type="submit">Add Recipe</button>
 				</div>
 				<div className="recipe-add__form__cats">
 					<fieldset>
@@ -228,6 +229,9 @@ const RecipeAdd = () => {
 							Add Tag
 						</button>
 					</fieldset>
+				</div>
+				<div className="recipe-add__form_submit">
+					<button className="btn btn--submit" type="submit">Add Recipe</button>
 				</div>
 			</form>
 		</div>
