@@ -3,6 +3,17 @@
 		text-transform: capitalize;
 	}
 
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		@extend h2;
+		list-style-type: none;
+		margin: 0 0 20px 0;
+	}
+
 	a {
 		color: $black;
 		text-decoration-color: rgba($black, 0.25);

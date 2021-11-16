@@ -42,15 +42,17 @@ const RecipeList = () => {
 	return (
 		<div className="recipe-list">
 			<h1>{pageTitle}</h1>
-			{recipes
-				.sort((a, b) => a.title > b.title ? 1:-1)
-				.map((recipe, index) => {
-				return (
-					<div key={index} className="recipe-list">
-						<h2><Link to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link></h2>
-					</div>
-				)
-			})}				
+			<ul>
+				{recipes
+					.sort((a, b) => a.title > b.title ? 1:-1)
+					.map((recipe, index) => {
+					return (
+						<li key={index}>
+							<Link to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link>
+						</li>
+					)
+				})}	
+			</ul>			
 		</div>
 	);
 }
