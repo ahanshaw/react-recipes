@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Redirect } from 'react-router-dom';
 import { useForm, useFieldArray } from "react-hook-form";
 
 import { database } from '../../services/firebase';
@@ -110,11 +110,10 @@ const RecipeEdit = () => {
 									<div className="recipe-add__form__ingredients__quantity">
 										<label htmlFor={`quantity${index}`}>Quantity</label>
 										<input
-											type="number"
+											type="text"
 											{...register(`ingredients.${index}.quantity`, { required: true })}
 											id={`quantity${index}`}
 											placeholder="1"
-											step="0.01"
 											defaultValue={field.quantity}
 										/>
 									</div>
@@ -252,8 +251,7 @@ const RecipeEdit = () => {
 	if (recipeUpdated) {
         return (
             <div>
-				<p>Recipe updated!</p>
-				<button onClick={continueEditing}>Return to Editing Recipe</button>
+				return <Redirect to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`} />
 			</div>
         );
 	}

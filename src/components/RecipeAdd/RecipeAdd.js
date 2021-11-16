@@ -97,11 +97,10 @@ const RecipeAdd = () => {
 								<div className="recipe-add__form__ingredients__quantity">
 									<label htmlFor={`quantity${index}`}>Quantity</label>
 									<input
-										type="number"
+										type="text"
 										{...register(`ingredients.${index}.quantity`, {required: true})}
 										id={`quantity${index}`}
 										placeholder="1"
-										step="0.01"
 										defaultValue={field.quantity}
 									/>
 								</div>
