@@ -7,7 +7,7 @@ const RecipeList = () => {
 	const [recipes, setRecipes] = useState([]);
 	const {recipeCategory} = useParams();
 	const {recipeTag} = useParams();
-	const [pageTitle, setPageTitle] = useState();
+	const [pageTitle, setPageTitle] = useState('Latest Recipes');
 
 	useEffect(() => {
 		database.ref('recipes').once('value', function (snapshot) {
