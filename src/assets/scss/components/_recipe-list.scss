@@ -14,14 +14,4 @@
 		list-style-type: none;
 		margin: 0 0 20px 0;
 	}
-
-	a {
-		color: $black;
-		text-decoration-color: rgba($black, 0.25);
-		transition: text-decoration-color 0.3s ease;
-
-		&:hover {
-			text-decoration-color: $black;
-		}
-	}
 }

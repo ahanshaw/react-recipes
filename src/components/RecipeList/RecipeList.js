@@ -46,7 +46,7 @@ const RecipeList = () => {
 				{recipes.map(recipe => {
 					return (
 						<li key={recipe.key}>
-							<Link to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link>
+							<Link className="link" to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link>
 						</li>
 					)
 				})}	
