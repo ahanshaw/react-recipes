@@ -29,7 +29,7 @@ const RecipeAdd = () => {
 			instructions: [{ step: '' }],
 			notes: ''
 		});
-	}, [recipeAdded]);
+	}, [reset, recipeAdded]);
 
 	const {
 		fields: tagsFields,
