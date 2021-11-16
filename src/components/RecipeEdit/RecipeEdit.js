@@ -71,11 +71,6 @@ const RecipeEdit = () => {
 		.catch()
 	}
 
-	const continueEditing = (e) => {
-		e.preventDefault();
-		setRecipeUpdated(false);
-	}
-
 	if (!user){
         return (
            <Link to={`/account/login`}>Log In</Link>
