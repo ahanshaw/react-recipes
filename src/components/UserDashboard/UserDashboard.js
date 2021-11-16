@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Redirect, Link } from 'react-router-dom';
 
 import { database } from '../../services/firebase';
-import { auth } from '../../services/firebase';
+import { auth, logout } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 export default function UserDashboard() {
@@ -39,13 +39,23 @@ export default function UserDashboard() {
 	if (user && recipes.length > 0) {
 		return (
 			<div className="dashboard">
-				<h1>Dashboard</h1>
-				<h2>My Recipes</h2>
-				{recipes.map(recipe => {
-					return (
-						<p key={recipe.key}><Link to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link></p>
-					)
-				})}
+				<div className="dashboard__title">
+					<h1>Dashboard</h1>
+				</div>
+				<div className="dashboard__side">
+					<p><Link className="btn btn--submit" to={`/add`}>Add a recipe</Link></p>
+					<p><button className="link" onClick={logout}>
+						Log Out
+					</button></p>
+				</div>
+				<div className="dashboard__content">
+					<h2>My Recipes</h2>
+					{recipes.map(recipe => {
+						return (
+							<p key={recipe.key}><Link className="link" to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link></p>
+						)
+					})}
+				</div>
 			</div>
         );
 	}
@@ -53,8 +63,19 @@ export default function UserDashboard() {
 	if (user && recipes.length < 1) {
 		return (
 			<div className="dashboard">
-				<h1>Dashboard</h1>
-				<p><Link to={`/add`}>Add a recipe</Link></p>
+				<div className="dashboard__title">
+					<h1>Dashboard</h1>
+				</div>
+				<div className="dashboard__side">
+					<p><Link className="btn btn--submit" to={`/add`}>Add a recipe</Link></p>
+					<p><button className="link" onClick={logout}>
+						Log Out
+					</button></p>
+				</div>
+				<div className="dashboard__content">
+					<h2>My Recipes</h2>
+					<p>Looks like you haven&#8217;t added any recipes yet.</p>
+				</div>
 			</div>
         );
 	}

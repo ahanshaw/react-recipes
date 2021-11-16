@@ -2,6 +2,7 @@ form {
 	fieldset {
 		margin: 0 0 20px 0;
 		padding: 0;
+		background-color: transparent;
 		border: 0;
 	}
 
@@ -15,6 +16,11 @@ form {
 
 	label {
 		margin: 0;
+
+		span {
+			@include font-reg;
+			@include font-size(14);
+		}
 	}
 
 	input,
@@ -26,7 +32,9 @@ form {
 		line-height: 40px;
 		color: $black;
 		padding: 0 10px;
+		background-color: transparent;
 		border: 1px solid rgba($black, 0.5);
+		border-radius: 0;
 	}
 
 	input {

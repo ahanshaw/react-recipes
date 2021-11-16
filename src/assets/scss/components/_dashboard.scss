@@ -1,4 +1,4 @@
-.account {
+.dashboard {
 	display: grid;
 	grid-template-columns: 3fr 1fr;
 	gap: 0;
@@ -27,8 +27,8 @@
 	&__content {
 		grid-area: content;
 
-		.btn--submit {
-			margin-bottom: 40px;
+		.link {
+			@include font-size(18);
 		}
 	}
 }

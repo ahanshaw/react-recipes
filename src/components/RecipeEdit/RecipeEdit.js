@@ -56,6 +56,7 @@ const RecipeEdit = () => {
 			.child(recipe.key)
 			.update({
 				title: data.title,
+				updated: Date.now(),
 				tags: data.tags,
 				servings: data.servings,
 				notes: data.notes,

@@ -38,22 +38,20 @@ const RecipeAdd = () => {
 	} = useFieldArray({ control, name: 'instructions' });
 
 	const onSubmit = (data) => {
-		let random = Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000);
 		database.ref('recipes')
-			.child(Math.round(random))
-			.set({
-				key: Math.round(random),
-				user: user.uid,
-				title: data.title,
-				tags: data.tags,
-				servings: data.servings,
-				notes: data.notes,
-				instructions: data.instructions,
-				ingredients: data.ingredients,
-				category: data.category
-			})
-			.then(
-				setRecipeAdded(true),
+		.push({
+			user: user.uid,
+			added: Date.now(),
+			title: data.title,
+			tags: data.tags,
+			servings: data.servings,
+			notes: data.notes,
+			instructions: data.instructions,
+			ingredients: data.ingredients,
+			category: data.category
+		})
+		.then(
+			setRecipeAdded(true),
 		)
 		.catch()
 	}
@@ -63,11 +61,15 @@ const RecipeAdd = () => {
 		setRecipeTitle(title);
 	}
 
+	const addNewRecipe = (e) => {
+		setRecipeAdded(false);
+	}	
+
 	if (recipeAdded) {
         return (
             <div>
 				<p>Recipe added!</p>
-				<p><Link className="btn" to={`/add`}>Add another recipe</Link></p>
+				<p><button onClick={addNewRecipe}>Add another recipe</button></p>
 				<p><Link to={`/recipe/${recipeTitle.toLowerCase().replace(/\s/g, '-')}`}>View {recipeTitle}</Link></p>
             </div>
         );

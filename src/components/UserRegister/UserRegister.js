@@ -81,64 +81,73 @@ export default function UserRegister() {
 
 	return (
 		<div className="account">
-			<form onSubmit={(e) => createUserWithEmailAndPassword(e, email, password)}>
-				<fieldset>
-					<label htmlFor="firstName">First Name</label>
-					<input
-						type="text"
-						id="firstName"
-						className="login__textBox"
-						value={firstName}
-						onChange={(e) => setFirstName(e.target.value)}
-						placeholder="First Name"
-					/>
-				</fieldset>
-				<fieldset>
-					<label htmlFor="lastName">Last Name</label>
-					<input
-						type="text"
-						id="lastName"
-						className="login__textBox"
-						value={lastName}
-						onChange={(e) => setLastName(e.target.value)}
-						placeholder="Last Name"
-					/>	
-				</fieldset>
-				<fieldset>
-					<label htmlFor="email">Email Address</label>
-					<input
-						type="email"
-						id="email"
-						className="login__textBox"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						placeholder="E-mail Address"
-					/>
-				</fieldset>
-				<fieldset>
-					<label htmlFor="password">Password (must have at least 6 characters)</label>
-					<input
-						type="password"
-						id="password"
-						className="login__textBox"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						placeholder="Password"
-					/>
-				</fieldset>
-				<button className="login__btn">Create Account</button>
-				{userExists && !resetSent &&
-					<div>
-						<p>An account with that email address already exists. <Link to={`/account/login`}>Log in</Link> or <button onClick={(e) => sendPasswordResetEmail(e, email)}>reset your password</button>.</p>
-					</div>
-				}
-				{resetSent && 
-					<p>Password reset sent! Check your email.</p>
-				}
-				{error && 
-					<p className="error">{error}</p>
-				}
-			</form>
+			<div className="account__title">
+				<h1>Register</h1>
+			</div>
+			<div className="account__content">
+				<form onSubmit={(e) => createUserWithEmailAndPassword(e, email, password)}>
+					<fieldset>
+						<label htmlFor="firstName">First Name</label>
+						<input
+							type="text"
+							id="firstName"
+							className="login__textBox"
+							value={firstName}
+							onChange={(e) => setFirstName(e.target.value)}
+							placeholder="First Name"
+							required
+						/>
+					</fieldset>
+					<fieldset>
+						<label htmlFor="lastName">Last Name</label>
+						<input
+							type="text"
+							id="lastName"
+							className="login__textBox"
+							value={lastName}
+							onChange={(e) => setLastName(e.target.value)}
+							placeholder="Last Name"
+							required
+						/>	
+					</fieldset>
+					<fieldset>
+						<label htmlFor="email">Email Address</label>
+						<input
+							type="email"
+							id="email"
+							className="login__textBox"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							placeholder="E-mail Address"
+							required
+						/>
+					</fieldset>
+					<fieldset>
+						<label htmlFor="password">Password <span>(must have at least 6 characters)</span></label>
+						<input
+							type="password"
+							id="password"
+							className="login__textBox"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							placeholder="Password"
+							required
+						/>
+					</fieldset>
+					<button className="btn btn--submit">Create Account</button>
+					{userExists && !resetSent &&
+						<div>
+							<p>An account with that email address already exists. <Link to={`/account/login`}>Log in</Link> or <button onClick={(e) => sendPasswordResetEmail(e, email)}>reset your password</button>.</p>
+						</div>
+					}
+					{resetSent && 
+						<p>Password reset sent! Check your email.</p>
+					}
+					{error && 
+						<p className="error">{error}</p>
+					}
+				</form>
+			</div>
 		</div>
 	);
 }

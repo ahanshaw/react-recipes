@@ -46,6 +46,9 @@ const App = () => {
 							<Route path="/recipe/:recipeKey/:recipeTitle">
 								<Recipe />
 							</Route>
+							<Route path="/recipes">
+								<RecipeList />
+							</Route>
 							<Route path="/category/:recipeCategory">
 								<RecipeList />
 							</Route>

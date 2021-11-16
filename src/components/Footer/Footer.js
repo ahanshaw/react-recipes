@@ -1,7 +1,8 @@
 export function Footer() {
+	const currentYear = new Date().getFullYear();
 	return (
 		<footer className="footer">
-			<p>Recipes &copy; 2021</p>
+			<p>Site by Angie Hanshaw &copy;{currentYear}</p>
         </footer>
     );
 }

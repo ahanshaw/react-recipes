@@ -1,26 +1,22 @@
-import { auth, logout } from '../../services/firebase';
+import { auth } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 export function Header() {
-	const [user] = useAuthState(auth);
+	const [user, loading] = useAuthState(auth);
 
 	return (
 		<header className="header">
 			<p className="title">
 				<a href="/">Recipe Fun with React!</a>
 			</p>
-			{user &&
+			{user && loading === false &&
 				<div className="admin">
-					<p><a href="/add">Add a Recipe</a></p>
-					<p><button onClick={logout}>
-						Log Out
-					</button></p>
+					<p><a className="link" href="/account/dashboard">My Dashboard</a></p>
 				</div>
 			}
-			{!user &&
+			{!user && loading === false &&
 				<div className="admin">
-					<p><a href="/account/login">Log In</a></p>
-					<p><a href="/account/register">Register</a></p>
+					<p><a className="link" href="/account/login">Log In</a> <span className="divider">|</span> <a className="link" href="/account/register">Register</a></p>
 				</div>
 			}
 		</header>

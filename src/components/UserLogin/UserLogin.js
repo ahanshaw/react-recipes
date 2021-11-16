@@ -33,28 +33,42 @@ export default function UserLogin() {
 
 	return (
 		<div className="account">
-			<form onSubmit={(e) => signInWithEmailAndPassword(e, email, password)}>
-				<input
-					type="text"
-					className="login__textBox"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					placeholder="E-mail Address"
-				/>
-				<input
-					type="password"
-					className="login__textBox"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					placeholder="Password"
-				/>
-				<button className="login__btn">Log In</button>
-				{error && 
-					<p className="error">{error}</p>
-				}
-				<p><Link to={`/account/reset`}>Forgot your password?</Link></p>
-				<p><Link to={`/account/register`}>Need to create an account?</Link></p>
-			</form>
+			<div className="account__title">
+				<h1>Log In</h1>
+			</div>
+			<div className="account__side">
+
+			</div>
+			<div className="account__content">
+				<form onSubmit={(e) => signInWithEmailAndPassword(e, email, password)}>
+					<fieldset>
+						<label for="">Email</label>
+						<input
+							id="email"
+							type="text"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							placeholder="E-mail Address"
+						/>
+					</fieldset>
+					<fieldset>
+						<label for="password">Password</label>
+						<input
+							id="password"
+							type="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							placeholder="Password"
+						/>
+					</fieldset>
+					<button className="btn btn--submit">Log In</button>
+					{error && 
+						<p className="error">{error}</p>
+					}
+					<p><Link className="link" to={`/account/reset`}>Forgot your password?</Link></p>
+					<p><Link className="link" to={`/account/register`}>Need to create an account?</Link></p>
+				</form>
+			</div>
 		</div>
 	);
 }

@@ -31,33 +31,40 @@ const Recipe = () => {
 				<div className="recipe__title">
 					<h1>{recipe.title}</h1>
 				</div>
-				<div className="recipe__cats">
-					<p>Servings: {recipe.servings}</p>					
-					<p className="recipe__category">Category: <Link to={`/category/${recipe.category.toLowerCase().replace(/\s/g, '-')}`}>{recipe.category}</Link></p>
-					<p className="recipe__tags">Tags: {recipe.tags.map((tag, index) => {
-						return (
-							<Link key={index} to={`/tag/${tag.tag.toLowerCase().replace(/\s/g, '-')}`}>{tag.tag}</Link>
-						)
-					})}</p>
+				<div className="recipe__side">
+					<div className="detail">
+						<h2>Servings</h2>
+						<p>{recipe.servings}</p>
+					</div>
+					
+					<div className="detail">
+						<h2>Category</h2>
+						<p><Link className="link" to={`/category/${recipe.category.toLowerCase().replace(/\s/g, '-')}`}>{recipe.category}</Link></p>
+					</div>
+
+					<div className="detail">
+						<h2>Tags</h2>
+						<ul>
+							{recipe.tags.map((tag, index) => {
+								return (
+									<li><Link className="link" key={index} to={`/tag/${tag.tag.toLowerCase().replace(/\s/g, '-')}`}>{tag.tag}</Link></li>
+								)
+							})}
+						</ul>
+					</div>
+
 					{user && user.uid === recipe.user &&
-						<p><Link to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
+						<p><Link className="btn btn--submit" to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
 					}
 				</div>
 				<div className="recipe__main">
-					<h2>Ingredients</h2>
-					<table className="recipe__ingredients">
-						<tbody>
-							{recipe.ingredients.map((ingredient, index) => {
-								return (
-									<tr key={index}>
-										<td>{ingredient.quantity}</td>
-										<td>{ingredient.measurement}</td>
-										<td>{ingredient.item}</td>
-									</tr>
-								)
-							})}
-						</tbody>
-					</table>
+					<h2>Ingredients</h2>			
+					{recipe.ingredients.map((ingredient, index) => {
+						return (
+							<p key={index}>{ingredient.quantity} {ingredient.measurement} {ingredient.item}
+							</p>
+						)
+					})}
 					<h2>Instructions</h2>
 					<ol className="recipe__instructions">
 						{recipe.instructions.map((step, index) => {

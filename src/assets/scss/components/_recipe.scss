@@ -8,8 +8,8 @@
 		grid-template-columns: 3fr 1fr;
 		gap: 0;
 		grid-template-areas:
-			"title cats"
-			"main cats";
+			"title title"
+			"main side";
 		width: 100%;
 		height: 100%;
 
@@ -17,7 +17,7 @@
 			grid-template-columns: 1fr;
 			grid-template-areas:
 				"title"
-				"cats"
+				"side"
 				"main";
 		}
 	}
@@ -36,76 +36,42 @@
 		padding-right: 60px;
 	}
 
-	&__cats {
-		grid-area: cats;
+	&__side {
+		grid-area: side;
+		margin-top: 40px;
 
-		&__servings {
-			input {
-				width: calc(100% - 40px);
-			}
-		}
-
-		&__cat {
-			select {
-				width: calc(100% - 40px);
-			}
-		}
-	}
-
-	&__category {
-		a {
-			@include font-med;
-			@include font-size(18);
-			color: $black;
-			text-decoration-color: rgba($black, 0.25);
-			transition: text-decoration-color 0.3s ease;
-
-			&:hover {
-				text-decoration-color: $black;
-			}
-		}
-	}
-
-	&__tags {
-		a {
-			@include font-reg;
-			@include font-size(18);
-			color: $black;
-			text-decoration-color: rgba($black, 0.25);
-			transition: text-decoration-color 0.3s ease;
-
-			&::after {
-				content: ",";
-				margin-right: 5px;
-			}
+		.detail {
+			margin: 0 0 20px 0;
 
 			&:last-of-type {
-				&::after {
-					display: none;
-				}
-			}
-
-			&:hover {
-				text-decoration-color: $black;
+				margin-bottom: 40px;
 			}
 		}
-	}
 
-	&__ingredients {
-		td {
-			padding-right: 40px;
-			vertical-align: top;
+		h2 {
+			@include font-size(16);
+			margin: 0 10px 0 0;
+		}
 
-			@include mobile {
-				padding: 0 30px 20px 0;
-			}
+		p,
+		a {
+			@include font-size(16);
+		}
 
-			&:first-of-type {
-				text-align: right;
-			}
+		p {
+			margin: 0;
+		}
 
-			&:last-of-type {
-				padding-right: 0;
+		a {
+			text-transform: capitalize;
+		}
+
+		ul {
+			margin: 0;
+			padding: 0;
+
+			li {
+				list-style-type: none;
 			}
 		}
 	}
