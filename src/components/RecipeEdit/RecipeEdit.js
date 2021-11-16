@@ -16,8 +16,6 @@ const RecipeEdit = () => {
 		});
 	}, [recipeKey]);
 
-	console.log('recipe ', recipe);
-
 	const [user] = useAuthState(auth);
 	const [recipeUpdated, setRecipeUpdated] = useState(false);
 

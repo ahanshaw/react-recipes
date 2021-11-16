@@ -17,8 +17,6 @@ const Recipe = () => {
 		});
 	}, [recipeKey]);
 
-	console.log('recipe ', recipe);
-
 	if (!recipeLoaded) {
         return (
             <div>
