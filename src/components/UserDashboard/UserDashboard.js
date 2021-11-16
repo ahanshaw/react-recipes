@@ -30,7 +30,7 @@ export default function UserDashboard() {
 	if (loading) {
 		return (
 			<div className="dashboard">
-				<h1>Dashboard</h1>
+				<h1>My Dashboard</h1>
 				<p>Dashboard loading...</p>
 			</div>
         );
@@ -40,7 +40,7 @@ export default function UserDashboard() {
 		return (
 			<div className="dashboard">
 				<div className="dashboard__title">
-					<h1>Dashboard</h1>
+					<h1>My Dashboard</h1>
 				</div>
 				<div className="dashboard__side">
 					<p><Link className="btn btn--submit" to={`/add`}>Add a recipe</Link></p>
@@ -64,7 +64,7 @@ export default function UserDashboard() {
 		return (
 			<div className="dashboard">
 				<div className="dashboard__title">
-					<h1>Dashboard</h1>
+					<h1>My Dashboard</h1>
 				</div>
 				<div className="dashboard__side">
 					<p><Link className="btn btn--submit" to={`/add`}>Add a recipe</Link></p>

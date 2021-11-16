@@ -36,6 +36,11 @@
 		grid-area: main;
 		padding-right: 60px;
 
+		@include tablet {
+			margin-top: 30px;
+			padding-right: 0;
+		}
+
 		h2 {
 			@include font-bold;
 
