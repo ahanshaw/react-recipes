@@ -66,7 +66,7 @@ const Recipe = () => {
 						)
 					})}
 					<h2>Instructions</h2>
-					<ol className="recipe__instructions">
+					<ol>
 						{recipe.instructions.map((step, index) => {
 							return (
 								<li key={index}> {step.step}</li>
@@ -74,7 +74,7 @@ const Recipe = () => {
 						})}
 					</ol>
 					<h2>Notes</h2>
-					<p className="recipe__notes">{recipe.notes}</p>
+					<p>{recipe.notes}</p>
 				</div>
 			</div>
 		</div>

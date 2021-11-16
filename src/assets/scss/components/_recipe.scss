@@ -24,6 +24,7 @@
 
 	&__title {
 		grid-area: title;
+		margin-bottom: 20px;
 		padding-right: 60px;
 
 		h1 {
@@ -34,21 +35,44 @@
 	&__main {
 		grid-area: main;
 		padding-right: 60px;
+
+		h2 {
+			@include font-bold;
+
+			&:first-of-type {
+				margin-top: 0;
+			}
+		}
+
+		p {
+			max-width: 600px;
+		}
+
+		ol,
+		ul {
+			margin: 0 0 0 20px;
+			padding: 0;
+
+			li {
+				max-width: 600px;
+				margin: 0 0 20px 0;
+
+				&::marker {
+					margin-right: 10px;
+				}
+			}
+		}
 	}
 
 	&__side {
 		grid-area: side;
-		margin-top: 40px;
 
 		.detail {
-			margin: 0 0 20px 0;
-
-			&:last-of-type {
-				margin-bottom: 40px;
-			}
+			margin: 20px 0 0 0;
 		}
 
 		h2 {
+			@include font-bold;
 			@include font-size(16);
 			margin: 0 10px 0 0;
 		}
@@ -74,23 +98,9 @@
 				list-style-type: none;
 			}
 		}
-	}
 
-	&__instructions {
-		margin: 0 0 0 20px;
-		padding: 0;
-
-		li {
-			max-width: 600px;
-			margin: 0 0 20px 0;
-
-			&::marker {
-				margin-right: 10px;
-			}
+		.btn {
+			margin-top: 40px;
 		}
-	}
-
-	&__notes {
-		max-width: 600px;
 	}
 }
