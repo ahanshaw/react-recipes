@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useForm, useFieldArray } from "react-hook-form";
 
@@ -11,13 +11,25 @@ const RecipeAdd = () => {
 	const [recipeAdded, setRecipeAdded] = useState(false);
 	const [recipeTitle, setRecipeTitle] = useState('');
 	
-	const { control, register, formState: { errors }, handleSubmit } = useForm({
+	const { control, reset, register, formState: { errors }, handleSubmit } = useForm({
 		defaultValues: {
 			tags: [{tag: ''}],
 			ingredients: [{ quantity: '', measurement: '', item: '' }],
 			instructions: [{ step: '' }],
 		}
 	});
+
+	useEffect(() => {
+		reset({
+			title: '',
+			servings: '',
+			category: '',
+			tags: [{tag: ''}],
+			ingredients: [{ quantity: '', measurement: '', item: '' }],
+			instructions: [{ step: '' }],
+			notes: ''
+		});
+	}, [recipeAdded]);
 
 	const {
 		fields: tagsFields,
@@ -68,9 +80,8 @@ const RecipeAdd = () => {
 	if (recipeAdded) {
         return (
             <div>
-				<p>Recipe added!</p>
-				<p><button onClick={addNewRecipe}>Add another recipe</button></p>
-				<p><Link to={`/recipe/${recipeTitle.toLowerCase().replace(/\s/g, '-')}`}>View {recipeTitle}</Link></p>
+				<p>Hurray! <Link className="link" to={`/recipe/${recipeTitle.toLowerCase().replace(/\s/g, '-')}`}> {recipeTitle}</Link> has been added!</p>
+				<p><button className="btn btn--submit" onClick={addNewRecipe}>Add another recipe</button></p>
             </div>
         );
 	}
