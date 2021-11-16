@@ -42,16 +42,20 @@ const Recipe = () => {
 						<p><Link className="link" to={`/category/${recipe.category.toLowerCase().replace(/\s/g, '-')}`}>{recipe.category}</Link></p>
 					</div>
 
-					<div className="detail">
-						<h2>Tags</h2>
-						<ul>
-							{recipe.tags.map((tag, index) => {
-								return (
-									<li><Link className="link" key={index} to={`/tag/${tag.tag.toLowerCase().replace(/\s/g, '-')}`}>{tag.tag}</Link></li>
-								)
-							})}
-						</ul>
-					</div>
+					{recipe.tags &&
+						<div className="detail">
+							<h2>Tags</h2>
+							<ul>
+								{recipe.tags.map((tag, index) => {
+									return (
+										<li key={index}>
+											<Link className="link" key={index} to={`/tag/${tag.tag.toLowerCase().replace(/\s/g, '-')}`}>{tag.tag}</Link>
+										</li>
+									)
+								})}
+							</ul>
+						</div>
+					}
 
 					{user && user.uid === recipe.user &&
 						<p><Link className="btn btn--submit" to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
@@ -73,8 +77,12 @@ const Recipe = () => {
 							)
 						})}
 					</ol>
-					<h2>Notes</h2>
-					<p>{recipe.notes}</p>
+					{recipe.notes &&
+						<>
+							<h2>Notes</h2>
+							<p>{recipe.notes}</p>
+						</>
+					}
 				</div>
 			</div>
 		</div>
