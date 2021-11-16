@@ -43,9 +43,7 @@ const RecipeList = () => {
 		<div className="recipe-list">
 			<h1>{pageTitle}</h1>
 			<ul>
-				{recipes
-					.sort((a, b) => a.title > b.title ? 1:-1)
-					.map(recipe => {
+				{recipes.map(recipe => {
 					return (
 						<li key={recipe.key}>
 							<Link to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link>
