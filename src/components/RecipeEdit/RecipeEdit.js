@@ -89,11 +89,11 @@ const RecipeEdit = () => {
 		return (
 			<form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
 				<div className="recipe-form__title">
-					<fieldse className="fieldset-padded"t>
+					<fieldset className="fieldset-padded"t>
 						<label htmlFor="title">Title</label>
 						<input id="title" name="title" type="text" placeholder="Recipe title" {...register('title', { required: true })}/>
 						{errors.title && <p className="error">A recipe title is required.</p>}
-					</fieldse>
+					</fieldset>
 				</div>
 
 				<div className="recipe-form__main">
