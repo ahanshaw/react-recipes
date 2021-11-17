@@ -17,7 +17,8 @@ export default function UserDashboard() {
 					if (recipe.val().user === user.uid) {
 						let userRecipe = {
 							'title': recipe.val().title,
-							'key': recipe.val().key
+							'key': recipe.val().key,
+							'added': recipe.val().added,
 						}
 						recipeArr.push(userRecipe);
 					}
@@ -50,7 +51,9 @@ export default function UserDashboard() {
 				</div>
 				<div className="dashboard__content">
 					<h2>My Recipes</h2>
-					{recipes.map(recipe => {
+					{recipes
+						.sort((a, b) => a.added < b.added ? 1:-1)
+						.map(recipe => {
 						return (
 							<p key={recipe.key}><Link className="link" to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>{recipe.title}</Link></p>
 						)
