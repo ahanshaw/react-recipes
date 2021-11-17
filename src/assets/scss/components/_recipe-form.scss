@@ -25,6 +25,10 @@
 		padding-right: 40px;
 	}
 
+	.required {
+		@include font-size(14);
+	}
+
 	.remove {
 		width: 30px;
 		height: 30px;
@@ -50,6 +54,11 @@
 
 	&__side {
 		grid-area: side;
+		padding-top: 50px;
+
+		@include mobile {
+			padding-top: 0;
+		}
 	}
 
 	&__submit {

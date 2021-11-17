@@ -97,16 +97,17 @@ const RecipeAdd = () => {
 	return (
 		<form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
 			<div className="recipe-form__title">
+				<p className="required">*Required fields.</p>
 				<fieldset className="fieldset-padded">
-					<label htmlFor="title">Title</label>
+					<label htmlFor="title">Title*</label>
 					<input id="title" name="title" type="text" placeholder="Recipe title" {...register('title', { required: true })} onKeyUp = {(event) => handleTitle(event)} />
-					{errors.title && <p className="error error-padded">A recipe title is required.</p>}
+					{errors.title && <p className="error error-padded">Please add a recipe title.</p>}
 				</fieldset>
 			</div>
 
 			<div className="recipe-form__main">
 				<fieldset>
-					<legend>Ingredients</legend>
+					<legend>Ingredients*</legend>
 					{ingredientsFields.map((field, index) => (
 						<div className="recipe-form__ingredient" key={field.id}>
 							<div className="recipe-form__ingredient__quantity">
@@ -154,7 +155,7 @@ const RecipeAdd = () => {
 				</fieldset>
 
 				<fieldset>
-					<legend>Instructions</legend>
+					<legend>Instructions*</legend>
 					{instructionsFields.map((field, index) => (
 						<div className="recipe-form__instruction" key={field.id}>
 							<div className="recipe-form__instruction__step">
@@ -190,13 +191,13 @@ const RecipeAdd = () => {
 
 			<div className="recipe-form__side">
 				<fieldset className="fieldset-padded">
-					<label htmlFor="servings">Number of Servings</label>
+					<label htmlFor="servings">Number of Servings*</label>
 					<input id="servings" name="servings" placeholder="2" type="number" {...register('servings', { min: 1 })} />
 					{errors.servings && <p className="error">Must have at least one serving.</p>}
 				</fieldset>
 
 				<fieldset className="fieldset-padded">
-					<label htmlFor="category">Category</label>
+					<label htmlFor="category">Category*</label>
 					<select id="category" name="category" {...register('category', { required: true })}>
 						<option value="">Choose a Category</option>
 						<option value="beverages">Beverages</option>
@@ -209,7 +210,7 @@ const RecipeAdd = () => {
 						<option value="soup">Soup</option>
 						<option value="other">Other</option>
 					</select>
-					{errors.category && <p className="error error-padded">A category is required.</p>}
+					{errors.category && <p className="error error-padded">Please select a category.</p>}
 				</fieldset>
 
 				<fieldset>
