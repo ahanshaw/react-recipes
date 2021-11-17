@@ -90,7 +90,7 @@ const RecipeEdit = () => {
 			<form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
 				<div className="recipe-form__title">
 					<p className="required">*Required fields.</p>
-					<fieldset className="fieldset-padded"t>
+					<fieldset className="fieldset-padded">
 						<label htmlFor="title">Title*</label>
 						<input id="title" name="title" type="text" placeholder="Recipe title" {...register('title', { required: true })}/>
 						{errors.title && <p className="error error-padded">Please add a recipe title.</p>}
