@@ -108,3 +108,8 @@
 		border-color: rgba($black, 0.75);
 	}
 }
+
+.remove {
+	@include font-size(20);
+	transform: rotate(45deg);
+}
