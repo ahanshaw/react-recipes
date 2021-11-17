@@ -29,6 +29,10 @@ const Recipe = () => {
 		history.push("/account/dashboard");
 	}
 
+	const cancelDelete = () => {
+		setVerifyDeletion(false);
+	}
+
 	if (!recipeLoaded) {
         return (
             <div>
@@ -81,6 +85,7 @@ const Recipe = () => {
 						<>
 							<p className="warning">Are you sure? This cannot be undone.</p>
 							<button className="btn btn--secondary" onClick={permanentDelete}>Yes, Delete</button>
+							<button className="link" onClick={cancelDelete}>Cancel</button>
 						</>
 					}
 				</div>
