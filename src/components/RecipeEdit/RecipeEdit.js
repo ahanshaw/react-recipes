@@ -87,21 +87,21 @@ const RecipeEdit = () => {
 
 	if (user.uid === recipe.user && !recipeUpdated) {
 		return (
-			<div className="recipe-add">
-				<form className="recipe-add__form" onSubmit={handleSubmit(onSubmit)}>
-					<div className="recipe-add__form__title">
+			<div className="recipe-edit">
+				<form className="recipe-edit__form" onSubmit={handleSubmit(onSubmit)}>
+					<div className="recipe-edit__form__title">
 						<fieldset>
 							<label htmlFor="title">Title</label>
 							<input id="title" name="title" type="text" placeholder="Recipe title" {...register('title', { required: true })}/>
 							{errors.title && <p className="error">A recipe title is required.</p>}
 						</fieldset>
 					</div>
-					<div className="recipe-add__form__main">
+					<div className="recipe-edit__form__main">
 						<fieldset>
 							<legend>Ingredients</legend>
 							{ingredientsFields.map((field, index) => (
-								<div className="recipe-add__form__ingredients" key={field.id}>
-									<div className="recipe-add__form__ingredients__quantity">
+								<div className="recipe-edit__form__ingredients" key={field.id}>
+									<div className="recipe-edit__form__ingredients__quantity">
 										<label htmlFor={`quantity${index}`}>Quantity</label>
 										<input
 											type="text"
@@ -111,7 +111,7 @@ const RecipeEdit = () => {
 											defaultValue={field.quantity}
 										/>
 									</div>
-									<div className="recipe-add__form__ingredients__measurement">
+									<div className="recipe-edit__form__ingredients__measurement">
 										<label htmlFor={`measurement${index}`}>Measurement</label>
 										<input
 											{...register(`ingredients.${index}.measurement`)}
@@ -120,7 +120,7 @@ const RecipeEdit = () => {
 											defaultValue={field.measurement}
 										/>
 									</div>
-									<div className="recipe-add__form__ingredients__item">
+									<div className="recipe-edit__form__ingredients__item">
 										<label htmlFor={`item${index}`}>Ingredient</label>
 										<input
 											{...register(`ingredients.${index}.item`, { required: true })}
@@ -148,8 +148,8 @@ const RecipeEdit = () => {
 						<fieldset>
 							<legend>Instructions</legend>
 							{instructionsFields.map((field, index) => (
-								<div className="recipe-add__form__instructions" key={field.id}>
-									<div className="recipe-add__form__instructions__item">
+								<div className="recipe-edit__form__instructions" key={field.id}>
+									<div className="recipe-edit__form__instructions__item">
 										<label htmlFor={`instructions${index}`}>Step {index + 1}</label>
 										<textarea
 											{...register(`instructions.${index}.step`, { required: true })}
@@ -175,23 +175,22 @@ const RecipeEdit = () => {
 							</button>
 						</fieldset>
 						<fieldset>
-							<div className="recipe-add__form__notes">
+							<div className="recipe-edit__form__notes">
 								<label htmlFor="notes">Notes</label>
 								<textarea id="notes" name="notes" placeholder="Optional notes." {...register('notes')}></textarea>
 							</div>
 						</fieldset>
-						<button className="btn btn--submit" type="submit">Update Recipe</button>
 					</div>
-					<div className="recipe-add__form__cats">
+					<div className="recipe-edit__form__side">
 						<fieldset>
-							<div className="recipe-add__form__cats__servings">
+							<div className="recipe-edit__form__cats__servings">
 								<label htmlFor="servings">Number of Servings</label>
 								<input id="servings" name="servings" placeholder="2" type="number" {...register('servings', { min: 1 })} />
 							</div>
 							{errors.servings && <p className="error">Must have at least one serving.</p>}
 						</fieldset>
 						<fieldset>
-							<div className="recipe-add__form__cats__cat">
+							<div className="recipe-edit__form__cats__cat">
 								<label htmlFor="category">Category</label>
 								<select id="category" name="category" {...register('category', { required: true })}>
 									<option value="">Choose a Category</option>
@@ -211,8 +210,8 @@ const RecipeEdit = () => {
 						<fieldset>
 							<legend>Tags</legend>
 							{tagsFields.map((field, index) => (
-								<div className="recipe-add__form__tags" key={field.id}>
-									<div className="recipe-add__form__tags__tag">
+								<div className="recipe-edit__form__tags" key={field.id}>
+									<div className="recipe-edit__form__tags__tag">
 										<label className="sr-only" htmlFor={`tags${index}`}>Tag</label>
 										<input
 											{...register(`tags.${index}.tag`)}
@@ -236,6 +235,10 @@ const RecipeEdit = () => {
 								Add Tag
 							</button>
 						</fieldset>
+					</div>
+					<div className="recipe-edit__form__submit">
+						<button className="btn btn--primary" type="submit">Update Recipe</button>
+						<Link className="btn btn--secondary" to={`/recipe/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Cancel</Link>
 					</div>
 				</form>
 			</div>

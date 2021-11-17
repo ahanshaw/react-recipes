@@ -43,7 +43,7 @@ export default function UserDashboard() {
 					<h1>My Dashboard</h1>
 				</div>
 				<div className="dashboard__side">
-					<p><Link className="btn btn--submit" to={`/add`}>Add a recipe</Link></p>
+					<p><Link className="btn btn--primary" to={`/add`}>Add a recipe</Link></p>
 					<p><button className="link" onClick={logout}>
 						Log Out
 					</button></p>
@@ -67,7 +67,7 @@ export default function UserDashboard() {
 					<h1>My Dashboard</h1>
 				</div>
 				<div className="dashboard__side">
-					<p><Link className="btn btn--submit" to={`/add`}>Add a recipe</Link></p>
+					<p><Link className="btn btn--primary" to={`/add`}>Add a recipe</Link></p>
 					<p><button className="link" onClick={logout}>
 						Log Out
 					</button></p>

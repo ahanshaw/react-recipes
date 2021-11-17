@@ -1,4 +1,4 @@
-.recipe-add {
+.recipe-edit {
 	&__form {
 		display: grid;
 		grid-template-columns: 3fr 1fr;
@@ -22,6 +22,10 @@
 		&__title {
 			grid-area: title;
 			padding-right: 60px;
+
+			@include mobile {
+				padding-right: 0;
+			}
 
 			input {
 				width: calc(100% - 40px);
@@ -54,7 +58,12 @@
 		}
 
 		&__submit {
-			grid-area: main;
+			grid-area: submit;
+			display: flex;
+
+			.btn--secondary {
+				margin-left: 40px;
+			}
 		}
 
 		&__ingredients {

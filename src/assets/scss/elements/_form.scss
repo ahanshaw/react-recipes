@@ -61,7 +61,9 @@ form {
 		@include line-height(16, 24);
 		color: $black;
 		padding: 10px;
+		background-color: $white;
 		border: 1px solid rgba($black, 0.5);
+		border-radius: 0;
 
 		&::placeholder {
 			@include font-reg;

@@ -61,7 +61,7 @@ export default function UserLogin() {
 							placeholder="Password"
 						/>
 					</fieldset>
-					<button className="btn btn--submit">Log In</button>
+					<button className="btn btn--primary">Log In</button>
 					{error && 
 						<p className="error">{error}</p>
 					}

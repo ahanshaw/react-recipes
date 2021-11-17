@@ -134,7 +134,7 @@ export default function UserRegister() {
 							required
 						/>
 					</fieldset>
-					<button className="btn btn--submit">Create Account</button>
+					<button className="btn btn--primary">Create Account</button>
 					{userExists && !resetSent &&
 						<div>
 							<p>An account with that email address already exists. <Link to={`/account/login`}>Log in</Link> or <button onClick={(e) => sendPasswordResetEmail(e, email)}>reset your password</button>.</p>

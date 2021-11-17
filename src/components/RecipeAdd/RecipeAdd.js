@@ -81,7 +81,7 @@ const RecipeAdd = () => {
         return (
             <div>
 				<p>Hurray! <Link className="link" to={`/recipe/${recipeTitle.toLowerCase().replace(/\s/g, '-')}`}> {recipeTitle}</Link> has been added!</p>
-				<p><button className="btn btn--submit" onClick={addNewRecipe}>Add another recipe</button></p>
+				<p><button className="btn btn--primary" onClick={addNewRecipe}>Add another recipe</button></p>
             </div>
         );
 	}
@@ -187,7 +187,7 @@ const RecipeAdd = () => {
 						</div>
 					</fieldset>
 				</div>
-				<div className="recipe-add__form__cats">
+				<div className="recipe-add__form__side">
 					<fieldset>
 						<div className="recipe-add__form__cats__servings">
 							<label htmlFor="servings">Number of Servings</label>
@@ -243,7 +243,7 @@ const RecipeAdd = () => {
 					</fieldset>
 				</div>
 				<div className="recipe-add__form_submit">
-					<button className="btn btn--submit" type="submit">Add Recipe</button>
+					<button className="btn btn--primary" type="submit">Add Recipe</button>
 				</div>
 			</form>
 		</div>

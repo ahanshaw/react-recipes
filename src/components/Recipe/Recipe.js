@@ -58,7 +58,7 @@ const Recipe = () => {
 					}
 
 					{user && user.uid === recipe.user &&
-						<p><Link className="btn btn--submit" to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
+						<p><Link className="btn btn--primary" to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
 					}
 				</div>
 				<div className="recipe__main">
