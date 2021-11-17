@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { database } from '../../services/firebase';
 import { auth } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -9,6 +9,8 @@ const Recipe = () => {
 	const {recipeKey} = useParams();
 	const [recipe, setRecipe] = useState([]);
 	const [recipeLoaded, setRecipeLoaded] = useState(false);
+	const [verifyDeletion, setVerifyDeletion] = useState(false);
+	let history = useHistory();
 
 	useEffect(() => {
 		database.ref('recipes').child(recipeKey).on('value', function (snapshot) {
@@ -16,6 +18,16 @@ const Recipe = () => {
 			setRecipeLoaded(true);
 		});
 	}, [recipeKey]);
+
+	const togglePermanentDelete = (e) => {
+		e.preventDefault();
+		setVerifyDeletion(true);
+	}
+
+	const permanentDelete = () => {
+		database.ref('recipes').child(recipeKey).remove();
+		history.push("/account/dashboard");
+	}
 
 	if (!recipeLoaded) {
         return (
@@ -58,7 +70,18 @@ const Recipe = () => {
 					}
 
 					{user && user.uid === recipe.user &&
+						<>
 						<p><Link className="btn btn--primary" to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
+						{!verifyDeletion &&
+							<button className="btn btn--secondary" onClick={togglePermanentDelete}>Delete Recipe</button>
+						}
+						</>
+					}
+					{verifyDeletion &&
+						<>
+							<p className="warning">Are you sure? This cannot be undone.</p>
+							<button className="btn btn--secondary" onClick={permanentDelete}>Yes, Delete</button>
+						</>
 					}
 				</div>
 				<div className="recipe__main">

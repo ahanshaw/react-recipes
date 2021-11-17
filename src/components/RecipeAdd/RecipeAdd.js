@@ -10,6 +10,7 @@ const RecipeAdd = () => {
 	const [user] = useAuthState(auth);
 	const [recipeAdded, setRecipeAdded] = useState(false);
 	const [recipeTitle, setRecipeTitle] = useState('');
+	const [recipeKey, setRecipeKey] = useState('');
 	
 	const { control, reset, register, formState: { errors }, handleSubmit } = useForm({
 		defaultValues: {
@@ -50,8 +51,12 @@ const RecipeAdd = () => {
 	} = useFieldArray({ control, name: 'instructions' });
 
 	const onSubmit = (data) => {
+		let random = Math.floor(Math.random() * (9999999999 - 1000000000) + 1000000000);
+		setRecipeKey(random);
 		database.ref('recipes')
-		.push({
+		.child(Math.round(random))
+		.set({
+			key: Math.round(random),
 			user: user.uid,
 			added: Date.now(),
 			title: data.title,
@@ -63,7 +68,7 @@ const RecipeAdd = () => {
 			category: data.category
 		})
 		.then(
-			setRecipeAdded(true),
+			setRecipeAdded(true)
 		)
 		.catch()
 	}
@@ -76,13 +81,11 @@ const RecipeAdd = () => {
 	const addNewRecipe = (e) => {
 		setRecipeAdded(false);
 	}
-
-	console.log('instructionsFields ', instructionsFields[0].value);
 	
 	if (recipeAdded) {
         return (
             <div>
-				<p>Hurray! <Link className="link" to={`/recipe/${recipeTitle.toLowerCase().replace(/\s/g, '-')}`}> {recipeTitle}</Link> has been added!</p>
+				<p>Hurray! <Link className="link" to={`/recipe/${recipeKey}/${recipeTitle.toLowerCase().replace(/\s/g, '-')}`}> {recipeTitle}</Link> has been added!</p>
 				<p><button className="btn btn--primary" onClick={addNewRecipe}>Add another recipe</button></p>
             </div>
         );
