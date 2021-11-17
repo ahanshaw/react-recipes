@@ -75,8 +75,10 @@ const RecipeAdd = () => {
 
 	const addNewRecipe = (e) => {
 		setRecipeAdded(false);
-	}	
+	}
 
+	console.log('instructionsFields ', instructionsFields[0].value);
+	
 	if (recipeAdded) {
         return (
             <div>
@@ -103,10 +105,10 @@ const RecipeAdd = () => {
 					</fieldset>
 				</div>
 				<div className="recipe-add__form__main">
-					<div class="recipe-add__form__section">
+					<div className="recipe-add__form__section">
 						<legend>Ingredients</legend>
 						{ingredientsFields.map((field, index) => (
-							<div className="recipe-add__form__ingredients" key={field.id}>
+							<fieldset className="recipe-add__form__ingredients" key={field.id}>
 								<div className="recipe-add__form__ingredients__quantity">
 									<label htmlFor={`quantity${index}`}>Quantity</label>
 									<input
@@ -135,23 +137,20 @@ const RecipeAdd = () => {
 										defaultValue={field.item}
 									/>
 								</div>
-								<button className="remove" type="button" onClick={() => ingredientsRemove(index)}>
-									&ndash;
-								</button>
+								{ingredientsFields.length > 1 &&
+									<button className="remove" type="button" onClick={() => ingredientsRemove(index)}>&ndash;</button>
+								}
 								{errors.ingredients && <p className="error">Please add a quantity and an ingredient.</p>}
-							</div>
+							</fieldset>
 						))}
 						<button
 							type="button"
 							className="btn btn--add"
-							onClick={() => {
-								ingredientsAppend({ quantity: '', measurement: '', item: ''  });
-							}}
-						>
+							onClick={() => ingredientsAppend({ quantity: '', measurement: '', item: ''  })}>
 							Add Ingredient
 						</button>
 					</div>
-					<div class="recipe-add__form__section">
+					<div className="recipe-add__form__section">
 						<legend>Instructions</legend>
 						{instructionsFields.map((field, index) => (
 							<div className="recipe-add__form__instructions" key={field.id}>
@@ -164,19 +163,16 @@ const RecipeAdd = () => {
 										defaultValue={field.step}
 									></textarea>
 								</fieldset>
-								<button className="remove" type="button" onClick={() => instructionsRemove(index)}>
-									&ndash;
-								</button>
+								{instructionsFields.length > 1 &&
+									<button className="remove" type="button" onClick={() => instructionsRemove(index)}>&ndash;</button>
+								}
 								{errors.instructions && <p className="error">Please include instructions.</p>}
 							</div>
 						))}
 						<button
 							type="button"
 							className="btn btn--add"
-							onClick={() => {
-								instructionsAppend({ step: '' });
-							}}
-						>
+							onClick={() => instructionsAppend({ step: '' })}>
 							Add Step
 						</button>
 					</div>
@@ -226,9 +222,11 @@ const RecipeAdd = () => {
 										defaultValue={field[index]}
 									/>
 								</div>
-								<button className="remove" type="button" onClick={() => tagsRemove(index)}>
-									&ndash;
-								</button>
+								{tagsFields.length > 1 &&
+									<button className="remove" type="button" onClick={() => tagsRemove(index)}>
+										&ndash;
+									</button>
+								}
 							</div>
 						))}
 						<button

@@ -1,11 +1,15 @@
 .recipe-add {
+	@include tablet {
+		max-width: 600px;
+	}
+
 	&__form {
 		display: grid;
 		grid-template-columns: 3fr 1fr;
-		gap: 0;
+		column-gap: 60px;
 		grid-template-areas:
-			"title cats"
-			"main cats"
+			"title side"
+			"main side"
 			"submit submit";
 		width: 100%;
 		height: 100%;
@@ -14,7 +18,7 @@
 			grid-template-columns: 1fr;
 			grid-template-areas:
 				"title"
-				"cats"
+				"side"
 				"main"
 				"submit";
 		}
@@ -25,38 +29,14 @@
 
 		&__title {
 			grid-area: title;
-			padding-right: 60px;
-
-			@include mobile {
-				padding-right: 0;
-			}
-
-			input {
-				width: calc(100% - 40px);
-
-				@include mobile {
-					width: 100%;
-				}
-			}
 		}
 
 		&__main {
 			grid-area: main;
-			padding-right: 60px;
-
-			@include tablet {
-				padding-right: 0;
-			}
 		}
 
 		&__side {
-			grid-area: cats;
-
-			&__servings {
-				input {
-					width: calc(100% - 40px);
-				}
-			}
+			grid-area: side;
 
 			&__cat {
 				select {
@@ -70,42 +50,31 @@
 		}
 
 		&__ingredients {
-			display: flex;
-			justify-content: space-between;
-			align-items: flex-end;
-			flex-wrap: wrap;
+			position: relative;
+			display: grid;
+			grid-template-columns: 1fr 1fr 4fr 30px;
+			column-gap: 20px;
+			grid-template-areas: "quantity measurement item .";
 			margin-bottom: 10px;
 
 			@include mobile {
-				position: relative;
-				justify-content: flex-start;
+				grid-template-columns: 1fr 2fr 30px;
+				grid-template-areas:
+					"quantity measurement ."
+					"item item .";
 				margin-bottom: 20px;
 			}
 
 			&__quantity {
-				flex: 0 0 calc(20% - 30px);
-
-				@include mobile {
-					flex: 0 0 calc(33.33% - 30px);
-					margin-right: 15px;
-				}
+				grid-area: quantity;
 			}
 
 			&__measurement {
-				flex: 0 0 calc(25% - 30px);
-
-				@include mobile {
-					flex: 0 0 calc(66.66% - 30px);
-				}
+				grid-area: measurement;
 			}
 
 			&__item {
-				flex: 0 0 calc(55% - 30px);
-
-				@include mobile {
-					flex: 0 0 calc(100% - 45px);
-					margin: 10px 15px 0 0;
-				}
+				grid-area: item;
 			}
 
 			label {
@@ -115,13 +84,12 @@
 			}
 
 			.remove {
-				margin-bottom: 10px;
-
-				@include mobile {
-					position: absolute;
-					top: 30px;
-					right: 0;
-				}
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				width: 25px;
+				height: 25px;
+				margin-bottom: 7.5px;
 			}
 
 			.error {
@@ -152,13 +120,6 @@
 		}
 
 		&__notes {
-			textarea {
-				width: calc(100% - 40px);
-
-				@include mobile {
-					width: 100%;
-				}
-			}
 		}
 
 		&__tags {

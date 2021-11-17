@@ -1,11 +1,15 @@
 .recipe-edit {
+	@include tablet {
+		max-width: 600px;
+	}
+
 	&__form {
 		display: grid;
 		grid-template-columns: 3fr 1fr;
-		gap: 0;
+		column-gap: 60px;
 		grid-template-areas:
-			"title cats"
-			"main cats"
+			"title side"
+			"main side"
 			"submit submit";
 		width: 100%;
 		height: 100%;
@@ -14,41 +18,21 @@
 			grid-template-columns: 1fr;
 			grid-template-areas:
 				"title"
-				"cats"
+				"side"
 				"main"
 				"submit";
 		}
 
 		&__title {
 			grid-area: title;
-			padding-right: 60px;
-
-			@include mobile {
-				padding-right: 0;
-			}
-
-			input {
-				width: calc(100% - 40px);
-			}
 		}
 
 		&__main {
 			grid-area: main;
-			padding-right: 60px;
-
-			@include tablet {
-				padding-right: 0;
-			}
 		}
 
 		&__side {
-			grid-area: cats;
-
-			&__servings {
-				input {
-					width: calc(100% - 40px);
-				}
-			}
+			grid-area: side;
 
 			&__cat {
 				select {
@@ -147,9 +131,6 @@
 		}
 
 		&__notes {
-			textarea {
-				width: calc(100% - 40px);
-			}
 		}
 
 		&__tags {
