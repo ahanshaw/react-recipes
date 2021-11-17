@@ -103,7 +103,7 @@ const RecipeAdd = () => {
 					</fieldset>
 				</div>
 				<div className="recipe-add__form__main">
-					<fieldset>
+					<div class="recipe-add__form__section">
 						<legend>Ingredients</legend>
 						{ingredientsFields.map((field, index) => (
 							<div className="recipe-add__form__ingredients" key={field.id}>
@@ -150,12 +150,12 @@ const RecipeAdd = () => {
 						>
 							Add Ingredient
 						</button>
-					</fieldset>
-					<fieldset>
+					</div>
+					<div class="recipe-add__form__section">
 						<legend>Instructions</legend>
 						{instructionsFields.map((field, index) => (
 							<div className="recipe-add__form__instructions" key={field.id}>
-								<div className="recipe-add__form__instructions__item">
+								<fieldset className="recipe-add__form__instructions__item">
 									<label htmlFor={`instructions${index}`}>Step {index + 1}</label>
 									<textarea
 										{...register(`instructions.${index}.step`, { required: true })}
@@ -163,7 +163,7 @@ const RecipeAdd = () => {
 										placeholder="Add at least one step."
 										defaultValue={field.step}
 									></textarea>
-								</div>
+								</fieldset>
 								<button className="remove" type="button" onClick={() => instructionsRemove(index)}>
 									&ndash;
 								</button>
@@ -179,7 +179,7 @@ const RecipeAdd = () => {
 						>
 							Add Step
 						</button>
-					</fieldset>			
+					</div>
 					<fieldset>
 						<div className="recipe-add__form__notes">
 							<label htmlFor="notes">Notes</label>
