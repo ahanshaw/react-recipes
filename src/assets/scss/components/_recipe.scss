@@ -6,7 +6,7 @@
 	&__container {
 		display: grid;
 		grid-template-columns: 3fr 1fr;
-		gap: 0;
+		column-gap: 60px;
 		grid-template-areas:
 			"title title"
 			"main side";
@@ -25,7 +25,6 @@
 	&__title {
 		grid-area: title;
 		margin-bottom: 20px;
-		padding-right: 60px;
 
 		h1 {
 			margin: 0;
@@ -34,11 +33,9 @@
 
 	&__main {
 		grid-area: main;
-		padding-right: 60px;
 
 		@include tablet {
 			margin-top: 30px;
-			padding-right: 0;
 		}
 
 		h2 {
