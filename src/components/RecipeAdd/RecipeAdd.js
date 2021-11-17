@@ -100,7 +100,7 @@ const RecipeAdd = () => {
 				<fieldset className="fieldset-padded">
 					<label htmlFor="title">Title</label>
 					<input id="title" name="title" type="text" placeholder="Recipe title" {...register('title', { required: true })} onKeyUp = {(event) => handleTitle(event)} />
-					{errors.title && <p className="error">A recipe title is required.</p>}
+					{errors.title && <p className="error error-padded">A recipe title is required.</p>}
 				</fieldset>
 			</div>
 
@@ -142,7 +142,7 @@ const RecipeAdd = () => {
 									<button className="remove" type="button" onClick={() => ingredientsRemove(index)}>+</button>
 								</div>
 							}
-							{errors.ingredients && <p className="error">Please add a quantity and an ingredient.</p>}
+							{errors.ingredients && <p className="error error-padded">Please add a quantity and an ingredient.</p>}
 						</div>
 					))}
 					<button
@@ -209,7 +209,7 @@ const RecipeAdd = () => {
 						<option value="soup">Soup</option>
 						<option value="other">Other</option>
 					</select>
-					{errors.category && <p className="error">A recipe category is required.</p>}
+					{errors.category && <p className="error error-padded">A category is required.</p>}
 				</fieldset>
 
 				<fieldset>
