@@ -65,7 +65,8 @@ const RecipeAdd = () => {
 			notes: data.notes,
 			instructions: data.instructions,
 			ingredients: data.ingredients,
-			category: data.category
+			category: data.category,
+			favorited: 0
 		})
 		.then(
 			setRecipeAdded(true)

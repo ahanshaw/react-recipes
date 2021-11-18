@@ -11,11 +11,15 @@ const Recipe = () => {
 	const [recipeLoaded, setRecipeLoaded] = useState(false);
 	const [verifyDeletion, setVerifyDeletion] = useState(false);
 	const [isFavorite, setIsFavorite] = useState(false);
+	const [numFavorites, setNumFavorites] = useState('');
 	let history = useHistory();
 
 	useEffect(() => {
 		database.ref('recipes').child(recipeKey).on('value', function (snapshot) {
 			setRecipe(snapshot.val());
+			if (snapshot.val()) {
+				setNumFavorites(snapshot.val().favorited);
+			}
 			setRecipeLoaded(true);
 		});
 		if (user && loading === false) {
@@ -47,6 +51,14 @@ const Recipe = () => {
 				setIsFavorite(true)
 			)
 			.catch()
+
+			database.ref('recipes')
+			.child(recipeKey)
+			.update({
+				favorited: numFavorites + 1,
+			})
+			.then()
+			.catch()	
 		}
 		else {
 			database.ref('users')
@@ -58,6 +70,16 @@ const Recipe = () => {
 				setIsFavorite(false)
 			)
 			.catch()
+
+			if (numFavorites > 0) {
+				database.ref('recipes')
+				.child(recipeKey)
+				.update({
+					favorited: numFavorites - 1,
+				})
+				.then()
+				.catch()
+			}
 		}
 	}
 
