@@ -20,14 +20,24 @@
 		column-gap: 60px;
 		grid-template-areas:
 			"title title"
-			"main side";
+			"main side"
+			"main admin";
 		width: 100%;
 		height: 100%;
 
 		@include tablet {
+			grid-template-columns: 1fr 1fr;
+			grid-template-areas:
+				"title title"
+				"side admin"
+				"main main";
+		}
+
+		@include mobile {
 			grid-template-columns: 1fr;
 			grid-template-areas:
 				"title"
+				"admin"
 				"side"
 				"main";
 		}
@@ -38,12 +48,44 @@
 		display: flex;
 		margin-bottom: 20px;
 
+		@include mobile {
+			flex-wrap: wrap;
+		}
+
 		h1 {
 			margin: 0;
+
+			@include mobile {
+				flex: 0 0 100%;
+				order: 1;
+			}
 		}
 
 		.btn--favorite {
 			margin-right: 10px;
+
+			@include mobile {
+				order: 2;
+				margin: 20px 0 0 0;
+			}
+		}
+	}
+
+	&__admin {
+		grid-area: admin;
+
+		@include tablet {
+			text-align: right;
+		}
+
+		@include mobile {
+			text-align: left;
+			margin-bottom: 20px;
+		}
+
+		.btn {
+			min-width: 200px;
+			text-align: center;
 		}
 	}
 

@@ -82,11 +82,10 @@
 		margin-bottom: 20px;
 
 		@include mobile {
-			grid-template-columns: 1fr 2fr 30px;
-			grid-template-areas:
-				"quantity measurement ."
-				"item item remove"
-				"error error";
+			position: relative;
+			display: flex;
+			flex-wrap: wrap;
+			margin-bottom: 30px;
 		}
 
 		&:last-of-type {
@@ -95,22 +94,37 @@
 
 		&__quantity {
 			grid-area: quantity;
+
+			@include mobile {
+				flex: 0 0 calc(40% - 30px);
+			}
 		}
 
 		&__measurement {
 			grid-area: measurement;
+
+			@include mobile {
+				flex: 0 0 calc(60% - 45px);
+			}
 		}
 
 		&__item {
 			grid-area: item;
 
 			@include mobile {
+				flex: 0 0 calc(100% - 45px);
 				margin-top: 10px;
 			}
 		}
 
 		&__remove {
 			grid-area: remove;
+
+			@include mobile {
+				position: absolute;
+				top: 25px;
+				right: 0;
+			}
 		}
 
 		.error {

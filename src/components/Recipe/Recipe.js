@@ -116,6 +116,23 @@ const Recipe = () => {
 					}
 					<h1>{recipe.title}</h1>
 				</div>
+				<div className="recipe__admin">
+					{user && user.uid === recipe.user &&
+						<>
+						<p><Link className="btn btn--primary" to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
+						{!verifyDeletion &&
+							<button className="btn btn--secondary" onClick={confirmDelete}>Delete Recipe</button>
+						}
+						</>
+					}
+					{verifyDeletion &&
+						<>
+							<p className="warning">Are you sure? This cannot be undone.</p>
+							<button className="btn btn--secondary" onClick={permanentDelete}>Yes, Delete</button>
+							<button className="cancel-delete link" onClick={cancelDelete}>Cancel</button>
+						</>
+					}
+				</div>
 				<div className="recipe__side">
 					<div className="detail">
 						<h2>Servings</h2>
@@ -140,22 +157,6 @@ const Recipe = () => {
 								})}
 							</ul>
 						</div>
-					}
-
-					{user && user.uid === recipe.user &&
-						<>
-						<p><Link className="btn btn--primary" to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
-						{!verifyDeletion &&
-							<button className="btn btn--secondary" onClick={confirmDelete}>Delete Recipe</button>
-						}
-						</>
-					}
-					{verifyDeletion &&
-						<>
-							<p className="warning">Are you sure? This cannot be undone.</p>
-							<button className="btn btn--secondary" onClick={permanentDelete}>Yes, Delete</button>
-							<button className="cancel-delete link" onClick={cancelDelete}>Cancel</button>
-						</>
 					}
 				</div>
 				<div className="recipe__main">
