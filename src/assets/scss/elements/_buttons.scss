@@ -1,8 +1,11 @@
 /* buttons/links */
+button {
+	@include button-reset;
+}
 
 .btn {
-	@include button-reset;
 	display: inline-block;
+	text-decoration: none;
 
 	&--primary {
 		position: relative;
@@ -94,6 +97,24 @@
 
 		&::before {
 			content: "+ ";
+		}
+	}
+
+	&--favorite {
+		fill: $white;
+		stroke: $black;
+		stroke-width: 2px;
+		padding: 2px;
+		filter: drop-shadow(2px 2px 4px rgba($black, 0));
+		transition: filter 0.3s ease;
+
+		&:hover {
+			filter: drop-shadow(2px 2px 2px rgba($black, 0.5));
+		}
+
+		&.favorited {
+			fill: $red;
+			stroke: $red;
 		}
 	}
 }

@@ -5,11 +5,12 @@ import { auth } from '../../services/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Recipe = () => {
-	const [user] = useAuthState(auth);
+	const [user, loading] = useAuthState(auth);
 	const {recipeKey} = useParams();
 	const [recipe, setRecipe] = useState([]);
 	const [recipeLoaded, setRecipeLoaded] = useState(false);
 	const [verifyDeletion, setVerifyDeletion] = useState(false);
+	const [isFavorite, setIsFavorite] = useState(false);
 	let history = useHistory();
 
 	useEffect(() => {
@@ -17,7 +18,48 @@ const Recipe = () => {
 			setRecipe(snapshot.val());
 			setRecipeLoaded(true);
 		});
-	}, [recipeKey]);
+		if (user && loading === false) {
+			database.ref('users').child(user.uid).child('favorites').once('value', function (snapshot) {
+				let favorites = [];
+				snapshot.forEach(recipe => {
+					favorites.push(recipe.val().key);
+				});
+				if (favorites.toString().includes(recipeKey.toString())) {
+					setIsFavorite(true);
+				}
+			});
+		}
+	}, [user, loading, recipeKey]);
+
+	const toggleFavorite = (e) => {
+		e.preventDefault();
+
+		if (isFavorite === false) {
+			database.ref('users')
+			.child(user.uid)
+			.child('favorites')
+			.child(recipe.key)
+			.set({
+				key: recipe.key,
+				title: recipe.title,
+			})
+			.then(
+				setIsFavorite(true)
+			)
+			.catch()
+		}
+		else {
+			database.ref('users')
+			.child(user.uid)
+			.child('favorites')
+			.child(recipe.key)
+			.remove()
+			.then(
+				setIsFavorite(false)
+			)
+			.catch()
+		}
+	}
 
 	const togglePermanentDelete = (e) => {
 		e.preventDefault();
@@ -45,6 +87,11 @@ const Recipe = () => {
 		<div className="recipe">
 			<div className="recipe__container">
 				<div className="recipe__title">
+					{user &&
+						<button className={isFavorite ? 'btn btn--favorite favorited' : 'btn btn--favorite' } onClick={toggleFavorite}>
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="-2 -2 28 28"><path d="M12 4.419c-2.826-5.695-11.999-4.064-11.999 3.27 0 7.27 9.903 10.938 11.999 15.311 2.096-4.373 12-8.041 12-15.311 0-7.327-9.17-8.972-12-3.27z" /></svg>
+						</button>
+					}
 					<h1>{recipe.title}</h1>
 				</div>
 				<div className="recipe__side">
