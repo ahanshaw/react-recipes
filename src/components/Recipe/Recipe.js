@@ -33,6 +33,7 @@ const Recipe = () => {
 				}
 			});
 		}
+		window.scroll({ top: 0, left: 0, behavior: 'smooth' });
 	}, [user, loading, recipeKey]);
 
 	const toggleFavorite = (e) => {
