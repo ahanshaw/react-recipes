@@ -37,6 +37,14 @@
 
 	&__latest {
 		grid-area: latest;
+
+		.btn {
+			margin: 40px 0 0 0;
+
+			@include tablet {
+				margin: 20px 0;
+			}
+		}
 	}
 
 	&__favorites {

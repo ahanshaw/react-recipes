@@ -36,6 +36,7 @@ const Home = () => {
 						)
 					})}	
 				</ul>
+				<Link className="btn btn--primary" to={`/recipes`}>View All Recipes</Link>
 			</div>
 				
 			<div className="home__favorites">
