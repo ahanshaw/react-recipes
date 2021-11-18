@@ -7,6 +7,7 @@ import { Loader } from "./components/Loader/Loader";
 
 import "./assets/scss/main.scss";
 
+const Home = lazy(() => import('./components/Home/Home'));
 const RecipeList = lazy(() => import('./components/RecipeList/RecipeList'));
 const RecipeAdd = lazy(() => import('./components/RecipeAdd/RecipeAdd'));
 const RecipeEdit = lazy(() => import('./components/RecipeEdit/RecipeEdit'));
@@ -56,7 +57,7 @@ const App = () => {
 								<RecipeList />
 							</Route>							
 							<Route>
-								<RecipeList />
+								<Home />
 							</Route>
 						</Switch>
 					</Suspense>

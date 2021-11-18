@@ -1,0 +1,45 @@
+.home {
+	display: grid;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 60px;
+	grid-template-areas:
+		"title title"
+		"latest favorites";
+
+	@include tablet {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			"title"
+			"latest"
+			"favorites";
+	}
+
+	h1 {
+		text-transform: capitalize;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	li {
+		@include font-size(24);
+		line-height: 1.3;
+		list-style-type: none;
+		margin: 0 0 20px 0;
+	}
+
+	&__title {
+		grid-area: title;
+	}
+
+	&__latest {
+		grid-area: latest;
+	}
+
+	&__favorites {
+		grid-area: favorites;
+	}
+}
