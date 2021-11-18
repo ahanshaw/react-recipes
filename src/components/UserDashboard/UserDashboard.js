@@ -56,13 +56,15 @@ export default function UserDashboard() {
 				<div className="dashboard__title">
 					<h1>My Dashboard</h1>
 				</div>
-				<div className="dashboard__side">
+
+				<div className="dashboard__admin">
 					<p><Link className="btn btn--primary" to={`/add`}>Add a recipe</Link></p>
 					<p><button className="link" onClick={logout}>
 						Log Out
-					</button></p>
-				</div>
-				<div className="dashboard__content">
+					</button></p>					
+				</div>					
+
+				<div className="dashboard__recipes">
 					<h2>My Recipes</h2>
 					{recipes.length > 0 &&
 						recipes
@@ -76,7 +78,9 @@ export default function UserDashboard() {
 					{recipes.length < 1 &&
 						<p>Looks like you haven&#8217;t added any recipes yet.</p>
 					}
+				</div>
 
+				<div className="dashboard__favorites">
 					<h2>My Favorites</h2>
 					{favorites.length > 0 &&
 						favorites
@@ -88,8 +92,8 @@ export default function UserDashboard() {
 					}
 					{favorites.length < 1 &&
 						<p>Looks like you haven&#8217;t favorited any recipes yet.</p>
-					}
-				</div>
+					}					
+				</div>			
 			</div>
         );
 	}
