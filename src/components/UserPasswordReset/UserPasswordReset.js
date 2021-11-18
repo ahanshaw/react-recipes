@@ -31,7 +31,7 @@ export default function UserPasswordReset() {
 			<form onSubmit={(e) => sendPasswordResetEmail(e, email)}>
 				<label htmlFor="email">Email Address</label>
 				<input
-					type="text"
+					type="email"
 					id="email"
 					className="login__textBox"
 					value={email}

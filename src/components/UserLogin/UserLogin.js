@@ -45,7 +45,7 @@ export default function UserLogin() {
 						<label for="">Email</label>
 						<input
 							id="email"
-							type="text"
+							type="email"
 							value={email}
 							onChange={(e) => setEmail(e.target.value)}
 							placeholder="E-mail Address"
