@@ -39,7 +39,7 @@ const Home = () => {
 			</div>
 				
 			<div className="home__favorites">
-				<h2>Favorite Recipes</h2>
+				<h2>Most Popular Recipes</h2>
 				<ul>
 					{recipes
 						.sort((a, b) => a.favorited < b.favorited ? 1 : -1)
