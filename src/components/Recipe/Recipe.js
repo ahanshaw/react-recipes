@@ -61,7 +61,7 @@ const Recipe = () => {
 		}
 	}
 
-	const togglePermanentDelete = (e) => {
+	const confirmDelete = (e) => {
 		e.preventDefault();
 		setVerifyDeletion(true);
 	}
@@ -124,7 +124,7 @@ const Recipe = () => {
 						<>
 						<p><Link className="btn btn--primary" to={`/edit/${recipe.key}/${recipe.title.toLowerCase().replace(/\s/g, '-')}`}>Edit Recipe</Link></p>
 						{!verifyDeletion &&
-							<button className="btn btn--secondary" onClick={togglePermanentDelete}>Delete Recipe</button>
+							<button className="btn btn--secondary" onClick={confirmDelete}>Delete Recipe</button>
 						}
 						</>
 					}
@@ -132,7 +132,7 @@ const Recipe = () => {
 						<>
 							<p className="warning">Are you sure? This cannot be undone.</p>
 							<button className="btn btn--secondary" onClick={permanentDelete}>Yes, Delete</button>
-							<button className="link" onClick={cancelDelete}>Cancel</button>
+							<button className="cancel-delete link" onClick={cancelDelete}>Cancel</button>
 						</>
 					}
 				</div>
