@@ -8,6 +8,7 @@ const RecipeList = () => {
 	const {recipeCategory} = useParams();
 	const {recipeTag} = useParams();
 	const [pageTitle, setPageTitle] = useState('All Recipes');
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		database.ref('recipes').once('value', function (snapshot) {
@@ -36,8 +37,15 @@ const RecipeList = () => {
 				});
 			}
 			setRecipes(recipeArr);
+			setLoading(false);
 		});
 	}, [recipeCategory, recipeTag]);
+
+	if (loading) {
+		return (
+			<p>Just a moment while we finish cooking ...</p>
+		)
+	}
 
 	return (
 		<div className="recipe-list">

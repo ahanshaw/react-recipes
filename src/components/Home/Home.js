@@ -5,6 +5,7 @@ import { database } from '../../services/firebase';
 
 const Home = () => {
 	const [recipes, setRecipes] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		database.ref('recipes').once('value', function (snapshot) {
@@ -13,8 +14,15 @@ const Home = () => {
 				recipeArr.push(recipe.val());
 			});
 			setRecipes(recipeArr);
+			setLoading(false);
 		});
 	}, []);
+
+	if (loading) {
+		return (
+			<p>Just a moment while we finish cooking ...</p>
+		)
+	}
 
 	return (
 		<div className="home">
