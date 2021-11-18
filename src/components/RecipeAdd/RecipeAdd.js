@@ -96,8 +96,8 @@ const RecipeAdd = () => {
         return (
            <Link to={`/account/login`}>Log In</Link>
         );
-    }
-
+	}
+	
 	return (
 		<form className="recipe-form" onSubmit={handleSubmit(onSubmit)}>
 			<div className="recipe-form__title">
@@ -118,7 +118,7 @@ const RecipeAdd = () => {
 								<label htmlFor={`quantity${index}`}>Quantity</label>
 								<input
 									type="text"
-									{...register(`ingredients.${index}.quantity`)}
+									{...register(`ingredients.${index}.quantity`, {required: true})}
 									id={`quantity${index}`}
 									placeholder="1"
 									defaultValue={field.quantity}
@@ -134,7 +134,7 @@ const RecipeAdd = () => {
 								/>
 							</div>
 							<div className="recipe-form__ingredient__item">
-								<label htmlFor={`item${index}`}>Ingredient*</label>
+								<label htmlFor={`item${index}`}>Ingredient</label>
 								<input
 									{...register(`ingredients.${index}.item`, { required: true })}
 									id={`item${index}`}
@@ -147,7 +147,7 @@ const RecipeAdd = () => {
 									<button className="remove" type="button" onClick={() => ingredientsRemove(index)}>+</button>
 								</div>
 							}
-							{errors.ingredients && <p className="error error-padded">Please add an ingredient.</p>}
+							{errors.ingredients && <p className="error error-padded">Please add a quantity and an ingredient.</p>}
 						</div>
 					))}
 					<button
