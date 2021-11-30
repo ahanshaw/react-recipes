@@ -83,6 +83,8 @@ const RecipeAdd = () => {
 		setRecipeAdded(false);
 	}
 	
+	console.log('errors ', errors.ingredients);
+
 	if (recipeAdded) {
         return (
             <div>
@@ -111,14 +113,14 @@ const RecipeAdd = () => {
 
 			<div className="recipe-form__main">
 				<fieldset>
-					<legend>Ingredients*</legend>
+					<legend>Ingredients</legend>
 					{ingredientsFields.map((field, index) => (
 						<div className="recipe-form__ingredient" key={field.id}>
 							<div className="recipe-form__ingredient__quantity">
 								<label htmlFor={`quantity${index}`}>Quantity</label>
 								<input
 									type="text"
-									{...register(`ingredients.${index}.quantity`, {required: true})}
+									{...register(`ingredients.${index}.quantity`)}
 									id={`quantity${index}`}
 									placeholder="1"
 									defaultValue={field.quantity}
@@ -134,7 +136,7 @@ const RecipeAdd = () => {
 								/>
 							</div>
 							<div className="recipe-form__ingredient__item">
-								<label htmlFor={`item${index}`}>Ingredient</label>
+								<label htmlFor={`item${index}`}>Ingredient*</label>
 								<input
 									{...register(`ingredients.${index}.item`, { required: true })}
 									id={`item${index}`}
@@ -147,9 +149,9 @@ const RecipeAdd = () => {
 									<button className="remove" type="button" onClick={() => ingredientsRemove(index)}>+</button>
 								</div>
 							}
-							{errors.ingredients && <p className="error error-padded">Please add a quantity and an ingredient.</p>}
 						</div>
 					))}
+					{errors.ingredients && <p className="error error-padded">Please include an ingredient for each item.</p>}
 					<button
 						type="button"
 						className="btn btn--add"
@@ -176,9 +178,9 @@ const RecipeAdd = () => {
 									<button className="remove" type="button" onClick={() => instructionsRemove(index)}>+</button>
 								</div>
 							}
-							{errors.instructions && <p className="error">Please include instructions.</p>}
 						</div>
 					))}
+					{errors.instructions && <p className="error">Please include instructions for each step.</p>}
 					<button
 						type="button"
 						className="btn btn--add"

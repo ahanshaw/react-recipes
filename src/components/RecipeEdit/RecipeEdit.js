@@ -135,9 +135,9 @@ const RecipeEdit = () => {
 										<button className="remove" type="button" onClick={() => ingredientsRemove(index)}>+</button>
 									</div>
 								}
-								{errors.ingredients && <p className="error error-padded">Please add a quantity and an ingredient.</p>}
 							</div>
 						))}
+						{errors.ingredients && <p className="error error-padded">Please include an ingredient for each item.</p>}
 						<button
 							type="button"
 							className="btn btn--add"
@@ -167,9 +167,9 @@ const RecipeEdit = () => {
 										<button className="remove" type="button" onClick={() => instructionsRemove(index)}>+</button>
 									</div>
 								}
-								{errors.instructions && <p className="error">Please include instructions.</p>}
 							</div>
 						))}
+						{errors.instructions && <p className="error">Please include instructions for each step.</p>}
 						<button
 							type="button"
 							className="btn btn--add"
