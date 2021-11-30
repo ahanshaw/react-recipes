@@ -44,6 +44,9 @@ const Home = () => {
 				{userName &&
 					<p>Click on My Dashboard to see your favorite recipes and to add or view your own recipes.</p>
 				}
+				{!userName &&
+					<p>Log in or register to add recipes and save your favorites.</p>
+				}
 			</div>
 
 			<div className="home__latest">
