@@ -41,6 +41,9 @@ const Home = () => {
 		<div className="home">
 			<div className="home__title">
 				<h1>Welcome{userName && <span>, {userName}</span>}!</h1>
+				{userName &&
+					<p>Click on My Dashboard to see your favorite recipes and to add or view your own recipes.</p>
+				}
 			</div>
 
 			<div className="home__latest">

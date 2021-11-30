@@ -7,7 +7,7 @@ export function Header() {
 	return (
 		<header className="header">
 			<p className="title">
-				<a href="/">Recipe Fun with React!</a>
+				<a href="/">Recipe Fun with React</a>
 			</p>
 			{user && loading === false &&
 				<div className="admin">
