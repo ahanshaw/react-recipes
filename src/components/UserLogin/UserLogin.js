@@ -42,7 +42,7 @@ export default function UserLogin() {
 			<div className="account__content">
 				<form onSubmit={(e) => signInWithEmailAndPassword(e, email, password)}>
 					<fieldset>
-						<label for="">Email</label>
+						<label htmlFor="">Email</label>
 						<input
 							id="email"
 							type="email"
@@ -52,7 +52,7 @@ export default function UserLogin() {
 						/>
 					</fieldset>
 					<fieldset>
-						<label for="password">Password</label>
+						<label htmlFor="password">Password</label>
 						<input
 							id="password"
 							type="password"
